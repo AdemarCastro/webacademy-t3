@@ -1,9 +1,9 @@
 # Projeto Web Academy - ICOMP UFAM
 
-![icomp_resized](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/3a323326-1f7c-4f4f-b39b-04a203563040) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-![marca_ufam_vetor_negativo_resized](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/99c7aad8-f51e-4d40-ba06-9cce5059b7c9)
-<br><br>
-![logo_letra_branca_resized](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/eb7aa86b-4e66-4690-b1aa-0736d437a49e)
+![marca_ufam_vetor_negativo_resized_resized (1)](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/2f4cc0ad-8ef6-497e-8a1d-57e1a06b243a) &nbsp;&nbsp;
+![icomp_resized_resized](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/7ba61e3c-886e-4db4-8c48-137b1c26da36)&nbsp;&nbsp;
+![logo_letra_branca_resized_resized](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/fa7a6956-2d7d-4f85-8583-82268c174d7d)
+
 
 Bem-vindo ao meu repositório do Curso de Capacitação em Desenvolvimento Web da WebAcademy! Este curso tem como objetivo principal formar recursos humanos com habilidades para conceber, projetar, implementar e testar aplicações de software voltadas para a Internet, utilizando metodologias e ferramentas modernas, capazes de atender as demandas emergentes do mercado de desenvolvimento de software.
 
