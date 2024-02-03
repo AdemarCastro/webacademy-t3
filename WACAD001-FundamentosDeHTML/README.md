@@ -31,19 +31,19 @@ Na segunda aula, aprofundamos nossa exploração, incorporando elementos de layo
 
 ### Exercício 01 - WebAcademy T3
 
-<img src="">
+<img src="https://github.com/AdemarCastro/webacademy-t3/assets/25653698/aad932d7-4d6b-4bf7-b59a-447c6f9c50d4" width="50%">
 
-### Exercício 01 - WebAcademy T3
+### Exercício 02 - WebAcademy T3
 
-<img src="">
+<img src="https://github.com/AdemarCastro/webacademy-t3/assets/25653698/aad932d7-4d6b-4bf7-b59a-447c6f9c50d4" width="50%">
 
-### Exercício 01 - WebAcademy T3
+### Exercício 03 - WebAcademy T3
 
-<img src="">
+<img src="https://github.com/AdemarCastro/webacademy-t3/assets/25653698/7a274890-7dab-4519-86a3-bdfe717a9819" width="50%">
 
-### Exercício 01 - WebAcademy T3
+### Exercício 04 - WebAcademy T3
 
-<img src="">
+<img src="https://github.com/AdemarCastro/webacademy-t3/assets/25653698/7694130d-d5d5-4d30-9df9-7345d6277857" width="50%">
 
 ## Exercícios feitos por mim na Turma 02 do WebAcademy
 
