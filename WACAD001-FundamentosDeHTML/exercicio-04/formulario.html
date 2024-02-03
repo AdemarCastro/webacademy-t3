@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício 04</title>
+
+  <style>
+    input {
+      margin-bottom: 0.3rem;
+    }
+  </style>
+
+</head>
+<body>
+  <h1>Formulário de Contato</h1>
+  
+  <form>
+
+    <fieldset>
+      <legend>Dados Básicos</legend>
+      Nome: <input type="text" name="nome" id="nome-usuario" placeholder="Insira seu nome"><br>
+      Email: <input type="email" name="email" id="email-usuario" placeholder="Insira seu email"><br>
+      Website: <input type="url" name="url" id="url-usuario" placeholder="http://">
+    </fieldset>
+
+    <fieldset>
+      <legend>Seu curso no Instituto de Computação</legend>
+      <input type="radio" name="curso" value="cc" id="cc">
+      <label for="cc">Ciência da Computação</label><br>
+      <input type="radio" name="curso" value="es" id="es">
+      <label for="es">Engenharia de Software</label><br>
+      <input type="radio" name="curso" value="ec" id="ec">
+      <label for="ec">Engenharia da Computação</label>
+    </fieldset>
+    
+    <fieldset>
+      <legend>Assinale as linguagens já usadas por você:</legend>
+      <input type="checkbox" name="linguagens" id="java">
+      <label for="java">Java</label>
+      <input type="checkbox" name="linguagens" id="c">
+      <label for="c">C</label>
+      <input type="checkbox" name="linguagens" id="c++">
+      <label for="c++">C++</label>
+      <input type="checkbox" name="linguagens" id="perl">
+      <label for="perl">Perl</label>
+      <input type="checkbox" name="linguagens" id="python">
+      <label for="python">Python</label>
+      <input type="checkbox" name="linguagens" id="js">
+      <label for="js">JavaScript</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Dados Complementares</legend>
+      Cor favorita: <input type="color" name="cor-favorita" id="cor-favorita"><br>
+      Data de nascimento: <input type="date" name="data-nascimento" id="data-nascimento"><br>
+      Ano de entrada em seu curso do IComp: <input type="number" min="1980" max="2023" step="1" value="2023" id="ano-entrada"><br>
+      Nota para este site: <input type="range" min="0" max="10" value="0" id="nota">
+    </fieldset>
+    
+    <fieldset>
+      <legend>Área de atuação</legend>
+      <select name="area" id="area">
+        <option value="1">Banco de Dados</option>
+        <option value="2">Educação a Distância</option>
+        <option value="3">Engenharia de Software</option>
+        <option value="4">Otimização</option>
+        <option value="5">Programação para a Web</option>
+        <option value="6">Recuperação de Informações</option>
+        <option value="7">Redes de Computadores</option>
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <legend>Submeta seu curriculo vitae</legend>
+      <input type="file" name="curriculo-vitae" id="curriculo-vitae">
+    </fieldset>
+
+    <fieldset>
+      <legend>Digite sua Mensagem</legend>
+      <textarea name="mensagem" rows="4" cols="30">Este é o valor padrão</textarea>
+    </fieldset>
+
+    <br>
+
+    <input type="reset" name="resetar" id="resetar">
+    <input type="submit" name="enviar" id="enviar">
+  </form>
+
+
+</body>
+</html>

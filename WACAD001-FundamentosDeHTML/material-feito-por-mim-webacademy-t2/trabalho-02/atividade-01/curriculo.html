@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 01 - Cadastro de Currículo</title>
+
+  <style>
+    input, select {
+      margin-top: 0.2rem;
+    }
+  </style>
+
+</head>
+<body>
+  <h1>Cadastro de Currículo</h1>
+
+  <form>
+    <fieldset>
+      <legend>Informações Pessoais</legend>
+
+      Nome: <input type="text" name="name_user" required placeholder="Digite seu nome"><br>
+
+      Email: <input type="email" name="email_user" required placeholder="Digite seu email"><br>
+
+      Data de Nascimento: <input type="date" name="date_birth_user" required><br>
+
+      Altura(cm): <input type="number" name="height_user" min="50" max="260" step="1" value="175"><br>
+
+      Site: <input type="text" name="social_user" placeholder="Facebook, Linkedin ou Instagram"><br>
+
+      Estado Civil:
+      <select name="estado_civil_user" id="estado_civil" required>
+        <option value="">Casado</option>
+        <option value="2">Divorciado</option>
+        <option value="3">Separado</option>
+        <option value="4">Solteiro</option>
+        <option value="5">Viúvo</option>
+      </select><br>
+
+      Sexo: <input type="radio" name="gender_user" required> Masculino
+      <input type="radio" name="gender_user" required> Feminino
+
+    </fieldset>
+
+    <fieldset>
+      <legend>Endereço</legend>
+
+      CEP: <input type="text" name="cep_user"><br>
+
+      Endereço: <input type="text" name="address_user">
+      
+    </fieldset>
+
+    <fieldset>
+      <legend>Contato</legend>
+
+      Telefone: <input type="tel" name="telephone_user"><br>
+
+      Celular: <input type="tel" name="cell_phone_user" required>
+
+    </fieldset>
+
+    <fieldset>
+      <legend>Conhecimentos</legend>
+
+      <input type="checkbox" name="technology" id="html" value="html">
+      <label for="html">HTML</label>
+      <input type="checkbox" name="technology" id="css" value="css">
+      <label for="css">CSS</label>
+      <input type="checkbox" name="technology" id="js" value="js">
+      <label for="js">JavaScript</label><br>
+
+      Mais conhecimentos:
+      <textarea name="conhecimentos_user" required id="conhecimentos_user" cols="30" rows="10" placeholder="Digite os seus conhecimentos"></textarea>
+    </fieldset>
+
+    <input type="submit" name="submit" value="Enviar">
+  </form>
+</body>
+</html>

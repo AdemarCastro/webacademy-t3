@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 02 - Home</title>
+
+  <style>
+    .button {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 3px 8px;
+      background-color: #E5E5E5;
+      color: #000;
+      text-decoration: none;
+      border: 1px solid #4F4F4F;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="images/webacademy.png" alt="Logo do Web Academy" width="250" height="100">
+  
+    <h1>Loja de Cursos Fullstack - Web Academy</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="home.html">Início</a></li>
+      <li><a href="">Cursos</a></li>
+      <li><a href="">Sobre Nós</a></li>
+      <li><a href="pages/contato.html">Contato</a></li>
+    </ul>
+  </nav>
+
+  <aside>
+    <h3>Categorias</h3>
+
+    <ul>
+      <li><a href="#fullstack">Fullstack</a></li>
+      <li><a href="#frontend">Frontend</a></li>
+      <li><a href="#backend">Backend</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <article id="fullstack">
+      <img src="images/fullstack.jpg" alt="Imagem representando um desenvolvedor Fullstack" width="100" height="100">
+
+      <h2>Curso Fullstack Avançado</h2>
+
+      <p>Aprofunde suas habilidades em desenvolvimento web fullstack com este curso abrangente.</p>
+
+      <p><strong>Duração:</strong> 6 meses</p>
+
+      <p><strong>Pré-requisito:</strong> Conhecimento básico de HTML, CSS e JavaScript.</p>
+
+      <!-- Não há uma forma correta do ponto de vista da W3C de criar um button da maneira correta utilizando apenas as tags "a" e "button", é necessário utilizar CSS -->
+      <a href="pages/detalhe.html" class="button" target="_blank">
+        Detalhes
+      </a>
+    </article>
+
+    <article id="frontend">
+      <img src="images/front.jpg" alt="Imagem representando um desenvolvedor Fullstack" width="100" height="100">
+
+      <h2>Curso de Desenvolvimento Frontend</h2>
+
+      <p>Aprenda a criar interfaces de usuário incríveis com tecnologias frontend modernas.</p>
+
+      <p><strong>Duração:</strong> 3 meses</p>
+
+      <p><strong>Pré-requisito:</strong> Nenhum. Adequado para iniciantes e intermediários.</p>
+
+      <!-- Não há uma forma correta do ponto de vista da W3C de criar um button da maneira correta utilizando apenas as tags "a" e "button", é necessário utilizar CSS -->
+      <a href="pages/detalhe.html" class="button" target="_blank">
+        Detalhes
+      </a>
+    </article>
+
+    <article id="backend">
+      <img src="images/back.jpg" alt="Imagem representando um desenvolvedor Fullstack" width="100" height="100">
+
+      <h2>Curso de Desenvolvimento Backend</h2>
+
+      <p>Aprenda a criar serviços para atender aos mais variados propósitos.</p>
+
+      <p><strong>Duração:</strong> 3 meses</p>
+
+      <p><strong>Pré-requisito:</strong> Nenhum. Adequado para iniciantes e intermediários.</p>
+
+      <!-- Não há uma forma correta do ponto de vista da W3C de criar um button da maneira correta utilizando apenas as tags "a" e "button", é necessário utilizar CSS -->
+      <a href="pages/detalhe.html" class="button" target="_blank">
+        Detalhes
+      </a>
+      
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Web Academy Comércio. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
