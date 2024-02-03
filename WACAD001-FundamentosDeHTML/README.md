@@ -1,12 +1,12 @@
 # Projeto Web Academy - ICOMP UFAM
 
-<img src="/assets/images/webacademy.png" width="30%"> &nbsp;&nbsp;&nbsp;&nbsp;
-<img src="/assets/images/icomp.png" width="30%"> &nbsp;&nbsp;&nbsp;&nbsp;
-<img src="/assets/images/ufam.png" width="20%">
+<img src="assets/images/webacademy.png" width="30%"> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src="assets/images/icomp.png" width="30%"> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src="assets/images/ufam.png" width="20%">
 
 ## Disciplina: Introdução ao HTML5
 
-<img src="/assets/images/html.png" width="15%">
+<img src="assets/images/html.png" width="15%">
 
 🎓 **Aula 01: Desvendando a Magia do HTML** 📜
 Na primeira aula, mergulhamos de cabeça nos conceitos essenciais para compreender a estrutura por trás das páginas web. Exploramos tópicos fascinantes, como:
@@ -29,26 +29,36 @@ Na segunda aula, aprofundamos nossa exploração, incorporando elementos de layo
 
 ## Imagens de Alguns Trabalhos Desenvolvidos Durante o Curso
 
-### Atividade 04 Desenvolvida no Trabalho 01
+### Exercício 01 - WebAcademy T3
 
-<img src="/assets/images/pagina-01.png" width="50%">
+<img src="">
 
-### Atividade 05 Desenvolvida no Trabalho 02
+### Exercício 01 - WebAcademy T3
 
-<img src="/assets/images/pagina-02.png" width="50%">
+<img src="">
 
-<img src="/assets/images/pagina-03.png" width="50%">
+### Exercício 01 - WebAcademy T3
 
-<img src="/assets/images/pagina-04.png" width="50%">
+<img src="">
 
-🎉 Não posso expressar o quanto estou animado para continuar essa jornada, expandindo meus conhecimentos em web development. Cada tópico abordado no curso Web Academy está me aproximando do meu objetivo de me tornar um desenvolvedor web excepcional. 🌟
+### Exercício 01 - WebAcademy T3
 
-Fiquem ligados para mais atualizações sobre minha jornada na **Web Academy** e meu progresso na disciplina de **Fundamentos de HTML 5**! Se você também está curioso sobre o incrível mundo da web development, vamos trocar ideias e compartilhar experiências. Conecte-se comigo e vamos explorar juntos essa maravilhosa jornada digital! 🌐🤝
+<img src="">
 
-#WebAcademy #HTMLFundamentals #DesenvolvimentoWeb #ICOMPUFAM #WebDevelopment #HTML5 #CodingJourney
+## Exercícios feitos por mim na Turma 02 do WebAcademy
+
+### Atividade 04 Desenvolvida no Trabalho 01 - WebAcademy T2
+
+<img src="assets/images/pagina-01.png" width="50%">
+
+### Atividade 05 Desenvolvida no Trabalho 02 - WebAcademy T2
+
+<img src="assets/images/pagina-02.png" width="50%">
+
+<img src="assets/images/pagina-03.png" width="50%">
+
+<img src="assets/images/pagina-04.png" width="50%">
 
 # Contato
 - Email: ademar.castro.curriculo@gmail.com
 - X (Twitter): https://twitter.com/AdemarCastro20
-
-Vamos criar a próxima geração de experiências web juntos! 💪🌐
