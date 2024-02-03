@@ -1,8 +1,8 @@
 # Projeto Web Academy - ICOMP UFAM
 
-<img src="assets/images/webacademy.png" width="30%"> &nbsp;&nbsp;&nbsp;&nbsp;
-<img src="assets/images/icomp.png" width="30%"> &nbsp;&nbsp;&nbsp;&nbsp;
-<img src="assets/images/ufam.png" width="20%">
+<a href="https://ufam.edu.br/" target="_blank">![marca_ufam_vetor_negativo_resized_resized (1)](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/2f4cc0ad-8ef6-497e-8a1d-57e1a06b243a)</a> &nbsp;&nbsp;
+<a href="https://icomp.ufam.edu.br/">![icomp_resized_resized](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/7ba61e3c-886e-4db4-8c48-137b1c26da36)</a> &nbsp;&nbsp;
+<a href="https://webacademy.icomp.ufam.edu.br/">![logo_letra_branca_resized_resized](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/fa7a6956-2d7d-4f85-8583-82268c174d7d)</a> <br>
 
 ## Disciplina: Introdução ao HTML5
 
