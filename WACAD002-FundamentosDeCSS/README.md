@@ -1,12 +1,12 @@
 # Projeto Web Academy - ICOMP UFAM
 
-<a href="https://ufam.edu.br/" target="_blank">![marca_ufam_vetor_negativo_resized_resized (1).png](..%2F..%2F..%2FImagens%2Flogos%2Fmarca_ufam_vetor_negativo_resized_resized%20%281%29.png)</a> &nbsp;&nbsp;
-<a href="https://icomp.ufam.edu.br/">![icomp_resized_resized.png](..%2F..%2F..%2FImagens%2Flogos%2Ficomp_resized_resized.png)</a> &nbsp;&nbsp;
-<a href="https://webacademy.icomp.ufam.edu.br/">![logo_letra_branca_resized_resized.png](..%2F..%2F..%2FImagens%2Flogos%2Flogo_letra_branca_resized_resized.png)</a> <br>
+<a href="https://ufam.edu.br/" target="_blank"><img src="/assets/imgs/ufam.png" height="150px"></a> &nbsp;&nbsp;
+<a href="https://icomp.ufam.edu.br/"><img src="/assets/imgs/icomp.png" height="150px"></a> &nbsp;&nbsp;
+<a href="https://webacademy.icomp.ufam.edu.br/"><img src="/assets/imgs/webacademy.png" height="150px"></a> <br>
 
-## Disciplina: Introdução ao HTML5
+## Disciplina: Introdução ao CSS3
 
-<a href="https://www.w3schools.com/css/">![logo-css-3-2048 (1).png](..%2F..%2F..%2FImagens%2Flogos%2Flogo-css-3-2048%20%281%29.png)</a> <br>
+<a href="https://www.w3schools.com/css/"><img src="/assets/imgs/css3.png" height="150px"></a> <br>
 
 🖌️ **Aula 01: Introdução ao CSS e Estilização de Elementos** 🎨
 Nesta primeira aula, adentramos no universo do CSS e exploramos os fundamentos essenciais para estilizar páginas web. Os tópicos abordados incluíram:
@@ -31,6 +31,18 @@ Na terceira aula, exploramos técnicas avançadas de CSS para criar layouts resp
 - Flexbox: Uma abordagem moderna e poderosa para o posicionamento e alinhamento de elementos em layouts flexíveis.
 
 ## Imagens de Alguns Trabalhos Desenvolvidos Durante o Curso
+
+### Exercício 03
+
+![exercicio-03](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/cdd677c3-affa-4c5a-9425-691a44c2292f)
+
+### Exercício 05
+
+![Exercicio-05](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/68e9233c-db6e-47c8-9fac-a031bd91b1fc)
+
+### Exercício 06
+
+![Exercício 06](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/3d20b816-c35b-4803-9bb4-fe2c445c47dc)
 
 # Contato
 - Email: ademar.castro.curriculo@gmail.com
