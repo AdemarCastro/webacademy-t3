@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template 01</title>
+
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: grid;
+            padding: 20px;
+            width: 100vw;
+            height: 100vh;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-areas: "div1 div1 div2 div2"
+            "div3 div4 div4 div4"
+            "div5 div5 div5 div5";
+            gap: 20px;
+        }
+
+        .container > * {
+            padding: 20px;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            font-family: Roboto, sans-serif;
+            border-radius: 20px;
+        }
+
+        .container #div1 {
+            grid-area: div1;
+            background-color: darkred;
+        }
+
+        .container #div2 {
+            grid-area: div2;
+            background-color: darkblue;
+        }
+
+        .container #div3 {
+            grid-area: div3;
+            background-color: darkcyan;
+        }
+
+        .container #div4 {
+            grid-area: div4;
+            background-color: darkgoldenrod;
+        }
+
+        .container #div5 {
+            grid-area: div5;
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+<section class="container">
+    <div id="div1">DIV 1</div>
+    <div id="div2">DIV 2</div>
+    <div id="div3">DIV 3</div>
+    <div id="div4">DIV 4</div>
+    <div id="div5">DIV 5</div>
+</section>
+</body>
+</html>
