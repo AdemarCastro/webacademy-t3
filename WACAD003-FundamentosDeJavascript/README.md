@@ -49,6 +49,10 @@ A avaliação da disciplina será realizada através da participação em aula, 
 
 ## Imagens de Alguns Trabalhos Desenvolvidos Durante o Curso
 
+### Desafio 01
+
+![image](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/b6198073-9d36-44e7-b8e8-60323751e62e)
+
 ### Exercício 02
 
 ![Captura de tela de 2024-02-20 19-51-49](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/2f5b072c-698b-4872-8346-30e5820a501c)
