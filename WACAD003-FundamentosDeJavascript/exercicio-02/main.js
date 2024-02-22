@@ -13,7 +13,7 @@ for (let i = 1; i < 6; i++) {
 
     // Variáveis
     const newImage = document.createElement('img');
-    const src = `images/pic${i}.jpg`;
+    const src = `images/pic${i}.jpeg`;
     const alt = `Imagem pic${i}`;
 
     // Adiciona novos atributos a newImage
