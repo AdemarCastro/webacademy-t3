@@ -51,12 +51,11 @@ A avaliação da disciplina será realizada através da participação em aula, 
 
 ### Desafio 01
 
-![image](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/b6198073-9d36-44e7-b8e8-60323751e62e)
+![Captura de tela de 2024-02-20 19-51-49](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/2f5b072c-698b-4872-8346-30e5820a501c)
 
 ### Exercício 02
 
-![Captura de tela de 2024-02-20 19-51-49](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/2f5b072c-698b-4872-8346-30e5820a501c)
-
+![image](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/f3beb6f5-eeca-4776-a16f-6ae7789a2ba6)
 
 # Contato
 - Email: ademar.castro.curriculo@gmail.com
