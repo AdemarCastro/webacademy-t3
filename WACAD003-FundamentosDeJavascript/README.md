@@ -57,6 +57,10 @@ A avaliação da disciplina será realizada através da participação em aula, 
 
 ![image](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/f3beb6f5-eeca-4776-a16f-6ae7789a2ba6)
 
+### Exercício 03
+
+<img src="exercicio-03/assets/imgs/exercicio-03.gif">
+
 # Contato
 - Email: ademar.castro.curriculo@gmail.com
 - X (Twitter): https://twitter.com/AdemarCastro20
