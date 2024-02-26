@@ -1,66 +1,42 @@
-# Projeto Web Academy - ICOMP UFAM
+# Meu Projeto de Versionamento de Código com Git e GitHub
 
-<a href="https://ufam.edu.br/" target="_blank"><img src="/assets/imgs/ufam.png" height="150px"></a> &nbsp;&nbsp;
-<a href="https://icomp.ufam.edu.br/"><img src="/assets/imgs/icomp.png" height="150px"></a> &nbsp;&nbsp;
-<a href="https://webacademy.icomp.ufam.edu.br/"><img src="/assets/imgs/webacademy.png" height="150px"></a> <br>
+Este é um repositório criado para praticar e aprender sobre versionamento de código com Git e GitHub. Aqui você encontrará uma série de arquivos e exemplos relacionados a esse tema.
 
-## Disciplina: Fundamentos de Javascript
+## Estrutura do Repositório
 
-<a href="https://www.w3schools.com/javascript/"><img src="/assets/imgs/javascript.png" height="150px"></a> <br>
+- **src/**: Este diretório contém os arquivos de código-fonte do projeto.
+- **docs/**: Documentação do projeto.
+- **examples/**: Exemplos de uso do código ou funcionalidades.
+- **tests/**: Testes relacionados ao projeto.
 
-🌐 **Aula 1: Introdução ao Javascript e Fundamentos Básicos** 💻
-Nesta primeira aula, vamos explorar os conceitos introdutórios do Javascript e seus fundamentos básicos. Os tópicos abordados incluem:
-- Breve histórico da linguagem e sua relação com o Ecmascript.
-- Diferenças entre códigos embarcados e externos.
-- Tipos de variáveis e suas declarações com var, let e const.
-- O tipo objeto e seu uso.
-- Introdução aos arrays, métodos associados e formas de escrever funções: Function Declaration, Function Expression e Arrow Functions (ES6).
+## Como Contribuir
 
-📝 **Aula 2: Funções Avançadas e Escopos em Javascript** 🔄
-Nesta segunda aula, vamos aprofundar nosso conhecimento em funções e escopos em Javascript. Os tópicos incluem:
-- Funções de Primeira Classe: Conceito e aplicação.
-- Escopos e Hoisting: Compreensão do escopo em Javascript e como ocorre o hoisting.
-- Funções Imediatas e seu uso prático.
-- Cadeias de Escopo e sua importância na estruturação do código.
-- Closures: Entendimento e aplicação deste conceito avançado.
+Se você deseja contribuir para este projeto, siga estas etapas:
 
-🎯 **Aula 3: Orientação a Objetos em Javascript** 🚀
-Na terceira aula, vamos mergulhar no paradigma de programação orientada a objetos em Javascript. Os tópicos abordados incluem:
-- Conceitos fundamentais de orientação a objetos.
-- Criação de objetos e propriedades.
-- Herança e prototipagem em Javascript.
-- Métodos e encapsulamento.
-- Aplicações práticas de orientação a objetos em desenvolvimento web.
+1. Faça um fork do repositório.
+2. Crie uma branch para sua feature (`git checkout -b feature/NomeDaSuaFeature`).
+3. Faça commit de suas alterações (`git commit -am 'Adicionando uma nova funcionalidade'`).
+4. Envie para sua branch (`git push origin feature/NomeDaSuaFeature`).
+5. Abra um pull request.
 
-🔧 **Atividades Práticas**
-Ao final de cada aula, os alunos receberão atividades práticas para aplicar os conceitos aprendidos em sala de aula. Essas atividades visam consolidar o conhecimento e promover a prática dos conceitos discutidos.
+## Como Executar
 
-📊 **Avaliação**
-A avaliação da disciplina será realizada através da participação em aula, resolução das atividades práticas e média simples dos laboratórios de atividades propostos ao longo do curso.
+Para executar o projeto localmente, siga estas etapas:
 
-📚 **Referências**
-**Básica:**
-- FLANAGAN, David. JavaScript: O Guia Definitivo. 6a Ed.. Porto Alegre: Bookman, 2014.
-- MILETTO, Evandro M.; BERTAGNOLLI, Silvia C. Desenvolvimento de Software II: Introdução ao Desenvolvimento Web com HTML, CSS, JavaScript e PHP. 1a Ed.. Porto Alegre: Bookman, 2014.
-- PLOTZE, Rodrigo. Tecnologias WEB. Rio de Janeiro: SESES, 2015.
+1. Clone este repositório (`git clone https://github.com/seu_usuario/seu_repositorio.git`).
+2. Navegue até o diretório do projeto (`cd meu_projeto`).
+3. Execute o projeto de acordo com as instruções específicas disponíveis na documentação.
 
-**Complementar:**
-*(Incluir aqui a lista de referências complementares conforme o PPC do curso)*
+## Documentação
 
-## Imagens de Alguns Trabalhos Desenvolvidos Durante o Curso
+Para mais detalhes sobre o projeto, consulte a documentação disponível em `docs/`.
 
-### Desafio 01
+## Suporte
 
-![Captura de tela de 2024-02-20 19-51-49](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/2f5b072c-698b-4872-8346-30e5820a501c)
+Se você tiver alguma dúvida ou problema, sinta-se à vontade para abrir uma issue neste repositório. Teremos prazer em ajudar!
 
-### Exercício 02
+## Licença
 
-![image](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/f3beb6f5-eeca-4776-a16f-6ae7789a2ba6)
+Este projeto está licenciado sob a Licença MIT. Consulte o arquivo `LICENSE` para obter mais informações.
 
-### Exercício 03
-
-<img src="exercicio-03/assets/imgs/exercicio-03.gif">
-
-# Contato
-- Email: ademar.castro.curriculo@gmail.com
-- X (Twitter): https://twitter.com/AdemarCastro20
+// README gerado por ChatGpt
