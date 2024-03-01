@@ -41,7 +41,30 @@
     </ul>
 
     <script>
-        let e = document.getElementsByClassName("lista-itens-2")[0];
+        // A) Imprima no console todos os itens da lista-itens-2
+
+        // Captura o primeiro objeto com a classe .lista-itens-2 do html
+        let elements = document.getElementsByClassName("lista-itens-2")[0];
+
+        // Captura todos os li dentro do elements
+        let itemsLi = elements.getElementsByTagName('li');
+
+        // Percorre a lista items para exibir todos os li
+        for (let i = 0; i < itemsLi.length; i++) {
+
+            console.log(itemsLi[i]);
+        }
+
+        // B) Imprima no console somente os itens da lista-itens-2 que possuam a classe 'hot'
+
+        // Captura todos os li dentro do elements
+        let itemsHot = elements.getElementsByClassName('hot');
+
+        // Percorre a lista items para exibir todos os li
+        for (let i = 0; i < itemsHot.length; i++) {
+
+            console.log(itemsHot[i]);
+        }
     </script>
 </body>
 </html>
