@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questão 5</title>
+
+    <style>
+        .orange {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1>Várias listas</h1>
+
+    <p id="lista-titulo" name="lista">Lista de itens:</p>
+
+    <ul class="lista-itens-1">
+        <li id="one" class="hot">item a</li>
+        <li id="two" class="hot">item b</li>
+        <li id="three" class="hot">item c</li>
+        <li id="four">item d</li>
+    </ul>
+
+    <ul class="lista-itens-2">
+        <li id="one" class="hot">item a</li>
+        <li id="two" class="hot">item b</li>
+        <li id="three" class="hot">item c</li>
+        <li id="four">item d</li>
+    </ul>
+
+    <ul class="lista-itens-3">
+        <li id="one" class="hot">item a</li>
+        <li id="two" class="hot">item b</li>
+        <li id="three" class="hot">item c</li>
+        <li id="four">item d</li>
+    </ul>
+
+    <ul class="lista-itens-4">
+        <li id="one" class="hot">item a</li>
+        <li id="two" class="hot">item b</li>
+        <li id="three" class="hot">item c</li>
+        <li id="four">item d</li>
+    </ul>
+
+    <script>
+        // A) Percorra todos os itens da lista-itens-2 e altere o estilo de cor do texto para orange
+
+        // Captura o primeiro objeto com a classe .lista-itens-2 do html
+        let elements = document.getElementsByClassName("lista-itens-2")[0];
+
+        // Captura todos os li dentro do elements
+        let itemsLi = elements.getElementsByTagName('li');
+
+        // Percorre a lista items para adicionar a classe 'orange' aos li
+        for (let i = 0; i < itemsLi.length; i++) {
+
+            itemsLi[i].style.color = "orange";
+        }
+
+        // B) Percorra todos os itens da lista-itens-2, remova a classe "hot", se existir, e adicione uma nova classe "cold". Outra opção é percorrer os elementos e substituir diretamente a class "hot" por "cold
+
+        // Percorre os elementos de itemsLi
+        for (let i = 0; i < itemsLi.length; i++) {
+
+            // Se o item possuir a classe hot, remove a classe 'hot' e adiciona a classe 'cold'
+            if (itemsLi[i].classList.contains("hot")) {
+
+                itemsLi[i].classList.remove("hot");
+                itemsLi[i].classList.add("cold");
+            }
+        }
+    </script>
+</body>
+</html>
