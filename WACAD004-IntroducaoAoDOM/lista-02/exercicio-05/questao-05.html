@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questão 05</title>
+</head>
+<body>
+    <h1>To-do</h1>
+
+    <div>
+        <p id="lista-titulo" name="lista">Lista de atividades:</p>
+    </div>
+
+    <div>
+        <input placeholder="Digite aqui o item" />
+        <button id="buttonAdd">Adicionar</button>
+    </div>
+
+    <ul id="lista-itens">
+        <li>item a</li>
+    </ul>
+
+    <div>
+        <button id="buttonRm">Remover último item</button>
+    </div>
+
+    <script>
+        // a) Implementar funcionalidade de adicionar novo item à lista, de forma
+        // dinâmica, a partir do campo de <input> e botão de “adicionar” - 2,0
+        // pontos
+        // i) Considerar que não é permitido adicionar itens vazios, ou seja,
+        //     com string vazia ' '.
+        //     ii) Necessário verificar como recuperar o conteúdo de um campo
+        //     “input”.
+
+        // 1) Selecionar o botão
+        let buttonAdd = document.getElementById("buttonAdd");
+
+        // 2) Criar evento
+        buttonAdd.addEventListener("click", function () {
+            // Entrada
+            let input = document.querySelector("input");
+
+            // Valor do campo de entrada
+            let valorInput = input.value.trim();
+
+            // Se não for vazio
+            if (valorInput !== "") {
+
+                // Novo elemento
+                let nvElemento = document.createElement("li");
+
+                // Setando a classe hot ao meu novo elemento
+                nvElemento.classList.add("hot");
+
+                // Texto
+                nvElemento.textContent = valorInput;
+
+                // Lista
+                let itens = document.getElementById("lista-itens");
+
+                // Adiciona o elemento criado a lista
+                itens.appendChild(nvElemento);
+
+                // Reseta o campo de entrada
+                input.value = "";
+
+                // Lista li
+                let itensLi = itens.querySelectorAll("li");
+
+                // Verifica se deve exibir o button remover itens
+                if (itensLi.length > 0) {
+                    buttonRm.style.display = "block";
+                } else {
+                    buttonRm.style.display = "none";
+                }
+
+            } else {
+                // Alerta para caso o campo esteja vazio
+                alert("Valor inválido, o campo não pode estar vazio.");
+            }
+        })
+
+        // b) Implementar funcionalidade de remover último item da lista, de forma
+        // dinâmica, a partir do botão de “remover último item” - 2,0 pontos
+        //     i) Considerar que essa funcionalidade só faz sentido caso haja
+        //     pelo menos um (1) elemento presente na lista de itens.
+
+        // FIZ UMA IMPLEMENTAÇÃO DE EXIBIÇÃO DO BUTTON RM NO CÓDIGO ANTERIOR!!!
+
+        // Selecionar o botão remover
+        let buttonRm = document.getElementById("buttonRm");
+
+        buttonRm.addEventListener("click", function () {
+
+            // Itens da Lista
+            let itens = document.getElementById("lista-itens");
+
+            // Verifica se há pelo menos 1 item na lista, caso não passe vamos desabilitar o botão
+            itens.removeChild(itens.lastChild);
+
+        })
+
+    </script>
+</body>
+</html>
