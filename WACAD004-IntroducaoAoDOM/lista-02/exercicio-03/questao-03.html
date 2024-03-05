@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questão 03</title>
+</head>
+<body>
+    <h1>Várias listas</h1>
+
+    <div>
+        <p id="lista-titulo" name="lista">Lista de itens:</p>
+    </div>
+
+    <ul id="lista-itens-1">
+        <li id="one" class="hot">item a</li>
+        <li id="two" class="hot">item b</li>
+        <li id="three" class="hot">item c</li>
+        <li id="four">item d</li>
+    </ul>
+
+    <script>
+        // i) Adicione um novo elemento item na lista com id="lista-itens-1"
+
+        // Criando o elemento
+        let novoElemento = document.createElement("li");
+
+        // Criando o novo nó de texto
+        let novoTexto = document.createTextNode("item e");
+
+        // acoplando o nó de texto no novo elemento
+        novoElemento.appendChild(novoTexto);
+
+        // Coletando a posição em que o novo elemento irá ser posicionado na árvore dom
+        let posicaoNovoElemento = document.getElementById('lista-itens-1');
+
+        // alocando
+        posicaoNovoElemento.appendChild(novoElemento);
+    </script>
+</body>
+</html>
