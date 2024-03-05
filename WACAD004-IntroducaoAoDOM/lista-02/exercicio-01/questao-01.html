@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questão 01</title>
+</head>
+<body>
+    <h1>Várias listas</h1>
+
+    <div>
+        <p id="lista-titulo" name="lista">Lista de itens:</p>
+    </div>
+
+    <ul id="lista-itens-1">
+        <li id="one" class="hot">item a</li>
+        <li id="two" class="hot">item b</li>
+        <li id="three" class="hot">item c</li>
+        <li id="four">item d</li>
+    </ul>
+
+    <script>
+        // i) Imprima no console o primeiro e último filho da lista 1;
+        let listElement = document.getElementById("lista-itens-1");
+        let itemsLi = listElement.querySelectorAll("li");
+
+        // Existem várias formas de fazer isso, poderia ter pego por ID, mas quis fazer dessa forma mesmo
+        console.log(itemsLi[0]); // Primeiro da lista
+        console.log(itemsLi[itemsLi.length - 1]); // Último
+
+        // ii) Imprima no console o elemento HTML pai da lista 1;
+        let body = document.querySelector("body");
+        console.log(body);
+
+        // iii) Imprima no console todos os filhos da lista 1;
+
+        for (let i = 0; i < itemsLi.length; i++) {
+
+            console.log(itemsLi[i]);
+        }
+
+        // iv) Imprima no console os irmãos do item com id = 'two'
+        let itemTwo = document.getElementById("two");
+
+        // Anterior
+        console.log("Irmão anterior - ", itemTwo.previousElementSibling);
+
+        // Próximo
+        console.log("Irmão seguinte - ", itemTwo.nextElementSibling);
+
+    </script>
+</body>
+</html>
