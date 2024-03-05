@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questão 02</title>
+</head>
+<body>
+    <h1>Várias listas</h1>
+
+    <div>
+        <p id="lista-titulo" name="lista">Lista de itens:</p>
+    </div>
+
+    <ul id="lista-itens-1">
+        <li id="one" class="hot">item a</li>
+        <li id="two" class="hot">item b</li>
+        <li id="three" class="hot">item c</li>
+        <li id="four">item d</li>
+    </ul>
+
+    <script>
+        // i) Utilize a propriedade nodeValue para alterar o texto do
+        // parágrafo com id "lista-titulo" para "Nova Lista de Itens";
+        let titulo = document.getElementById("lista-titulo");
+
+        titulo.childNodes[0].nodeValue = "Nova Lista de Itens";
+
+        // ii) Selecione o segundo item da lista com id "two" e utilize a
+        // propriedade textContent para alterar o texto para "Item B
+        // Atualizado".
+        let segItemList = document.getElementById("two");
+
+        segItemList.textContent = "Item B Atualizado";
+
+    </script>
+</body>
+</html>
