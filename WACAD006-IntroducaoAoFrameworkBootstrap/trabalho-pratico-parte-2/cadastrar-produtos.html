@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loja WA - Gerenciar Produtos</title>
+
+  <!-- Importando o Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">Loja WA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Gerenciar produtos</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <button class="btn btn-dark">Sair</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- navbar -->
+
+  <!-- gerenciar produtos -->
+  <div class="container mt-5">
+    <h2>Gerenciar Produtos:</h2>
+    <div class="row">
+      <div class="col text-end">
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalNovoProduto">Novo Produto</button>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Estoque</th>
+            <th scope="col">Ações</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="list-group-item-secondary bg-light">
+            <th scope="row">1</th>
+            <td>Playstation 5</td>
+            <td>R$ 3.999,00</td>
+            <td>199</td>
+            <td>
+              <button type="button" class="btn btn-primary">Editar</button>
+              <button type="button" class="btn btn-danger">Excluir</button>
+            </td>
+          </tr>
+          <tr class="list-group-item-light">
+            <th scope="row">2</th>
+            <td>S24 - 128GB - Preto</td>
+            <td>R$ 5.399,00</td>
+            <td>9</td>
+            <td>
+              <button type="button" class="btn btn-primary">Editar</button>
+              <button type="button" class="btn btn-danger">Excluir</button>
+            </td>
+          </tr>
+          <tr class="list-group-item-secondary bg-light">
+            <th scope="row">3</th>
+            <td>Smartwatch 6</td>
+            <td>R$ 1.749,00</td>
+            <td>25</td>
+            <td>
+              <button type="button" class="btn btn-primary">Editar</button>
+              <button type="button" class="btn btn-danger">Excluir</button>
+            </td>
+          </tr>
+          <tr class="list-group-item-light">
+            <th scope="row">4</th>
+            <td>WindFree</td>
+            <td>R$ 2.499,00</td>
+            <td><span class="text-danger">0</span></td>
+            <td>
+              <button type="button" class="btn btn-primary">Editar</button>
+              <button type="button" class="btn btn-danger">Excluir</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- gerenciar produtos -->
+
+  <!-- modal cadastrar produtos -->
+  <div class="modal fade" id="modalNovoProduto" tabindex="-1" aria-labelledby="modalNovoProdutoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-dark">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalNovoProdutoLabel">Novo Produto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="produto" class="form-label">Produto</label>
+              <input type="text" class="form-control" id="produto" required>
+            </div>
+            <div class="mb-3">
+              <label for="preco" class="form-label">Preço</label>
+              <input type="text" class="form-control" id="preco" required>
+            </div>
+            <div class="mb-3">
+              <label for="estoque" class="form-label">Estoque</label>
+              <input type="number" class="form-control" id="estoque" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Confirmar Cadastro</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal cadastrar produtos -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
