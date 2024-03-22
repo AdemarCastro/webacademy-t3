@@ -45,15 +45,15 @@
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col">
+        <div class="col-12">
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Título</th>
-                    <th scope="col">Data de Inserção</th>
-                    <th scope="col">Data Limite</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col-3">Título</th>
+                    <th scope="col-2">Data de Inserção</th>
+                    <th scope="col-2">Data Limite</th>
+                    <th scope="col-3">Descrição</th>
+                    <th scope="col-2">Ações</th>
                 </tr>
                 </thead>
                 <tbody id="reminder-list">
@@ -64,6 +64,21 @@
     </div>
 </div>
 <!-- Adicionando a seção de lembretes -->
+
+<!-- Modal para exibir a descrição completa -->
+<div class="modal fade" id="descricaoCompletaModal" tabindex="-1" aria-labelledby="descricaoCompletaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="descricaoCompletaModalLabel">Descrição Completa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <p id="descricaoCompletaTexto"></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- modal adicionar lembrete -->
 <div class="modal fade" id="modalNovoLembrete" tabindex="-1" aria-labelledby="modalNovoLembreteLabel" aria-hidden="true">
@@ -76,11 +91,11 @@
             <div class="modal-body">
                 <form id="addReminderForm">
                     <div class="mb-3">
-                        <label for="reminderTitle" class="form-label">Título</label>
+                        <label for="reminderTitle" class="form-label">Título <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="reminderTitle" required>
                     </div>
                     <div class="mb-3">
-                        <label for="insertionDate" class="form-label">Data de Inserção</label>
+                        <label for="insertionDate" class="form-label">Data de Inserção <span class="text-danger">*</span></label>
                         <input type="datetime-local" class="form-control" id="insertionDate" required>
                     </div>
                     <div class="mb-3">

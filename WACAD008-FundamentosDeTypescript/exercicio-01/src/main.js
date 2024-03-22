@@ -14,6 +14,7 @@ var addReminderForm = document.getElementById('addReminderForm');
 var addReminderButton = document.getElementById('addReminderButton');
 var saveEditButton = document.getElementById('saveEditButton');
 var reminderList = document.getElementById('reminder-list');
+var modal = new bootstrap.Modal(document.getElementById('modalNovoLembrete'));
 /********************************************* FUNÇÕES *********************************************/
 // Função para adicionar um lembrete
 function addReminder(title, insertionDate, deadline, description) {
@@ -31,23 +32,39 @@ function saveEditedReminder(reminder, title, insertionDate, deadline, descriptio
     // Verificar se o lembrete a ser editado foi encontrado no array
     if (index !== -1) { // Quando o lembrete a ser editado não é encontrado, normalmente retorna -1
         console.log("Este é o lembrete editado pelo saveEditedReminder: " + editedReminder);
-        // Remover o lembrete antigo do array
-        reminders.splice(index, 1);
-        // Adicionar o lembrete editado na posição original
-        reminders.push(editedReminder);
+        // Remover o lembrete antigo do array e adicionar o lembrete editado na mesma posição
+        reminders.splice(index, 1, editedReminder);
         // Renderizar novamente a lista após a edição
         renderReminderList(reminders);
         console.log("Array de lembretes após adicionar o novo lembrete editado: " + reminders);
-        // Exiba o botão "Salvar"
-        saveEditButton.style.display = 'none';
-        // Esconda o botão "Adicionar Lembrete"
-        addReminderButton.style.display = 'block';
     }
     else {
         console.error("O lembrete a ser editado não foi encontrado no array de lembretes.");
         console.log("Lembrete a ser editado:", reminder);
         console.log("Lembretes no array:", reminders);
     }
+}
+// Função para capturar o lembrete a ser editado
+function saveEditedReminderHandler(event) {
+    event.preventDefault(); // Evitar o comportamento padrão do formulário
+    console.log('Passou no saveEditedReminderHandler!');
+    if (!currentEditingReminder) {
+        console.error("Não há lembrete em edição.");
+        return;
+    }
+    // Capturar os valores dos campos do formulário
+    var title = titleInput.value;
+    var insertionDate = new Date(insertionDateInput.value);
+    var deadline = deadlineInput.value ? new Date(deadlineInput.value) : null;
+    var description = descriptionInput.value ? descriptionInput.value : null;
+    // Fecha o modal do bootstrap
+    modal.hide();
+    // Chamar a função saveEditedReminder com os valores capturados
+    saveEditedReminder(currentEditingReminder, title, insertionDate, deadline, description);
+    // Limpar os campos do formulário
+    clearFormFields();
+    // Resetar o lembrete atualmente em edição
+    currentEditingReminder = null;
 }
 // Função para excluir o lembrete
 function deleteReminderHandler(reminder) {
@@ -71,22 +88,26 @@ function clearFormFields() {
         console.error("Um ou mais campos de entrada não foram encontrados.");
     }
 }
-// Função para formatar a data para exibição no formato local
-function formatDate(date) {
-    return date.toLocaleString();
-}
-// Função para adicionar zeros à esquerda, se necessário
+// Função para adicionar zeros à esquerda, se necessário - Necessária para formatDateTime()
 function addLeadingZero(value) {
     return value < 10 ? "0".concat(value) : "".concat(value);
 }
 // Função para formatar data e hora para o formato "yyyy-MM-ddThh:mm"
 function formatDateTime(date) {
     var year = date.getFullYear();
-    var month = addLeadingZero(date.getMonth() + 1); // Adiciona zero à esquerda se necessário
-    var day = addLeadingZero(date.getDate()); // Adiciona zero à esquerda se necessário
-    var hours = addLeadingZero(date.getHours()); // Adiciona zero à esquerda se necessário
-    var minutes = addLeadingZero(date.getMinutes()); // Adiciona zero à esquerda se necessário
+    var month = addLeadingZero(date.getMonth() + 1);
+    var day = addLeadingZero(date.getDate());
+    var hours = addLeadingZero(date.getHours());
+    var minutes = addLeadingZero(date.getMinutes());
     return "".concat(year, "-").concat(month, "-").concat(day, "T").concat(hours, ":").concat(minutes);
+}
+function formatViewDataTime(date) {
+    var dia = addLeadingZero(date.getDate());
+    var mes = addLeadingZero(date.getMonth() + 1);
+    var ano = date.getFullYear();
+    var horas = addLeadingZero(date.getHours());
+    var minutos = addLeadingZero(date.getMinutes());
+    return "".concat(dia, "/").concat(mes, "/").concat(ano, ", ").concat(horas, ":").concat(minutos);
 }
 // Função para renderizar a lista de lembretes
 function renderReminderList(reminders) {
@@ -95,34 +116,25 @@ function renderReminderList(reminders) {
         reminders.forEach(function (reminder, index) {
             var title = reminder[0], insertionDate = reminder[1], deadline = reminder[2], description = reminder[3];
             var listItem = document.createElement('tr');
-            listItem.innerHTML = "\n                <td>".concat(title, "</td>\n                <td>").concat(insertionDate, "</td>\n                <td>").concat(deadline ? deadline : '', "</td>\n                <td>").concat(description ? description : '', "</td>\n                <td>\n                    <button type=\"button\" class=\"btn btn-primary btn-editar\" data-bs-toggle=\"modal\" data-bs-target=\"#modalNovoLembrete\" data-index=\"").concat(index, "\">Editar</button>\n                    <button type=\"button\" class=\"btn btn-danger btn-excluir\" data-index=\"").concat(index, "\">Excluir</button>\n                </td>\n            ");
+            listItem.innerHTML = "\n                <td>".concat(title, "</td>\n                <td>").concat(formatViewDataTime(insertionDate), "</td>\n                <td>").concat(deadline ? formatViewDataTime(deadline) : 'Não há', "</td>\n                <td style=\"max-width: 150px;\" class=\"text-truncate\" data-bs-toggle=\"modal\" data-bs-target=\"#descricaoCompletaModal\" data-descricao=\"").concat(description, "\">").concat(description, "</td>\n                <td>\n                    <button type=\"button\" class=\"btn btn-primary btn-editar\" data-bs-toggle=\"modal\" data-bs-target=\"#modalNovoLembrete\" data-index=\"").concat(index, "\">Editar</button>\n                    <button type=\"button\" class=\"btn btn-danger btn-excluir\" data-index=\"").concat(index, "\">Excluir</button>\n                </td>\n            ");
             if (reminderList)
                 reminderList.appendChild(listItem);
+        });
+        // Adicionar evento de clique para abrir o modal com a descrição completa
+        var descricaoCompletaCells = document.querySelectorAll('#reminder-list td[data-bs-toggle="modal"]');
+        descricaoCompletaCells.forEach(function (cell) {
+            cell.addEventListener('click', function () {
+                var descricaoCompletaTexto = cell.getAttribute('data-descricao');
+                var descricaoCompletaModal = document.getElementById('descricaoCompletaTexto');
+                if (descricaoCompletaModal) {
+                    descricaoCompletaModal.textContent = descricaoCompletaTexto;
+                }
+            });
         });
     }
     else {
         console.error("O elemento reminder-list não foi encontrado.");
     }
-}
-// Função para salvar lembrete editado
-function saveEditedReminderHandler(event) {
-    event.preventDefault(); // Evitar o comportamento padrão do formulário
-    console.log('Passou no saveEditedReminderHandler!');
-    if (!currentEditingReminder) {
-        console.error("Não há lembrete em edição.");
-        return;
-    }
-    // Capturar os valores dos campos do formulário
-    var title = titleInput.value;
-    var insertionDate = new Date(insertionDateInput.value);
-    var deadline = deadlineInput.value ? new Date(deadlineInput.value) : null;
-    var description = descriptionInput.value ? descriptionInput.value : null;
-    // Chamar a função saveEditedReminder com os valores capturados
-    saveEditedReminder(currentEditingReminder, title, insertionDate, deadline, description);
-    // Limpar os campos do formulário
-    clearFormFields();
-    // Resetar o lembrete atualmente em edição
-    currentEditingReminder = null;
 }
 /********************************************* EVENTOS *********************************************/
 // Event new reminder para abrir o modal do novo lembrete
@@ -149,6 +161,8 @@ if (addReminderForm) {
             var newReminder = addReminder(title, insertionDate, deadline, description);
             reminders.push(newReminder);
             renderReminderList(reminders);
+            // Fecha o modal do bootstrap
+            modal.hide();
             // Limpar os campos do formulário
             clearFormFields();
         }
