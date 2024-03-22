@@ -1,5 +1,13 @@
+/********************************************* VARIÁVEIS e TIPOS *********************************************/
+
+// Tupla responsável por definir os valores do Reminder
 type Reminder = [string, Date, Date | null, string | null];
-let reminders: Reminder[] = []; // Variável reminders agora está definida globalmente
+
+// Array responsável por guardar o conjunto de Reminders
+let reminders: Reminder[] = [];
+
+// Variável global de Reminder:
+// Permite guardar o array sendo atualmente manipulado ao clicar em Editar Reminder
 let currentEditingReminder: Reminder | null = null;
 
 // Selecionando elementos do DOM
@@ -7,11 +15,12 @@ const titleInput: HTMLInputElement | null = document.getElementById('reminderTit
 const insertionDateInput: HTMLInputElement | null = document.getElementById('insertionDate') as HTMLInputElement;
 const deadlineInput: HTMLInputElement | null = document.getElementById('deadline') as HTMLInputElement;
 const descriptionInput: HTMLTextAreaElement | null = document.getElementById('description') as HTMLTextAreaElement;
-const newReminderButton: HTMLFormElement | null = document.getElementById('newReminderButton') as HTMLFormElement;
 const addReminderForm: HTMLFormElement | null = document.getElementById('addReminderForm') as HTMLFormElement;
 const addReminderButton: HTMLButtonElement | null = document.getElementById('addReminderButton') as HTMLButtonElement;
 const saveEditButton: HTMLButtonElement | null = document.getElementById('saveEditButton') as HTMLButtonElement;
 const reminderList: HTMLElement | null = document.getElementById('reminder-list');
+
+/********************************************* FUNÇÕES *********************************************/
 
 // Função para adicionar um lembrete
 function addReminder(title: string, insertionDate: Date, deadline: Date | null = null, description: string | null = null): Reminder {
@@ -25,7 +34,7 @@ function saveEditedReminder(reminder: Reminder, title: string, insertionDate: Da
     console.log(index);
 
     // Verificar se o lembrete a ser editado foi encontrado no array
-    if (index !== -1) {
+    if (index !== -1) { // Quando o lembrete a ser editado não é encontrado, normalmente retorna -1
         console.log("Este é o lembrete editado pelo saveEditedReminder: " + editedReminder);
 
         // Remover o lembrete antigo do array
@@ -34,11 +43,14 @@ function saveEditedReminder(reminder: Reminder, title: string, insertionDate: Da
         // Adicionar o lembrete editado na posição original
         reminders.push(editedReminder);
 
+        // Renderizar novamente a lista após a edição
+        renderReminderList(reminders);
         console.log("Array de lembretes após adicionar o novo lembrete editado: " + reminders);
-        renderReminderList(reminders); // Renderizar novamente a lista após a edição
 
-        saveEditButton.style.display = "none";
-        addReminderButton.style.display = "block";
+        // Exiba o botão "Salvar"
+        saveEditButton.style.display = 'none';
+        // Esconda o botão "Adicionar Lembrete"
+        addReminderButton.style.display = 'block';
     } else {
         console.error("O lembrete a ser editado não foi encontrado no array de lembretes.");
         console.log("Lembrete a ser editado:", reminder);
@@ -70,6 +82,27 @@ function clearFormFields() : void {
     }
 }
 
+// Função para formatar a data para exibição no formato local
+function formatDate(date: Date): string {
+    return date.toLocaleString();
+}
+
+// Função para adicionar zeros à esquerda, se necessário
+function addLeadingZero(value: number): string {
+    return value < 10 ? `0${value}` : `${value}`;
+}
+
+// Função para formatar data e hora para o formato "yyyy-MM-ddThh:mm"
+function formatDateTime(date: Date): string {
+    const year = date.getFullYear();
+    const month = addLeadingZero(date.getMonth() + 1); // Adiciona zero à esquerda se necessário
+    const day = addLeadingZero(date.getDate()); // Adiciona zero à esquerda se necessário
+    const hours = addLeadingZero(date.getHours()); // Adiciona zero à esquerda se necessário
+    const minutes = addLeadingZero(date.getMinutes()); // Adiciona zero à esquerda se necessário
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
+
+
 // Função para renderizar a lista de lembretes
 function renderReminderList(reminders: Reminder[]) : void {
     if (reminderList) {
@@ -93,35 +126,6 @@ function renderReminderList(reminders: Reminder[]) : void {
     } else {
         console.error("O elemento reminder-list não foi encontrado.");
     }
-}
-
-// Event listener para adicionar lembrete
-if (addReminderForm) {
-    addReminderForm.addEventListener('submit', function(event : SubmitEvent): void {
-        event.preventDefault(); // Evitar o comportamento padrão do formulário
-
-        console.log("Adicionar um novo lembrete!");
-
-        if (titleInput && insertionDateInput) {
-            const title: string = titleInput.value;
-            // const insertionDate : Date = formatLocalDate(new Date(insertionDateInput.value));
-            const insertionDate : Date = new Date(insertionDateInput.value);
-            // const deadline : Date = deadlineInput.value ? formatLocalDate(new Date(deadlineInput.value)) : null;
-            const deadline : Date = deadlineInput.value ? new Date(deadlineInput.value) : null;
-            const description: string | null = descriptionInput ? descriptionInput.value : null;
-            const newReminder: Reminder = addReminder(title, insertionDate, deadline, description);
-            reminders.push(newReminder);
-            renderReminderList(reminders);
-
-            // Limpar os campos do formulário
-            clearFormFields();
-
-        } else {
-            console.error("Um ou mais campos de entrada não foram encontrados.");
-        }
-    });
-} else {
-    console.error("O formulário addReminderForm não foi encontrado.");
 }
 
 // Função para salvar lembrete editado
@@ -151,7 +155,36 @@ function saveEditedReminderHandler(event: MouseEvent): void {
     currentEditingReminder = null;
 }
 
-// Event listener para editar lembrete
+/********************************************* EVENTOS *********************************************/
+
+// Event listener para adicionar lembrete
+if (addReminderForm) {
+    addReminderForm.addEventListener('submit', function(event : SubmitEvent): void {
+        event.preventDefault(); // Evitar o comportamento padrão do formulário
+
+        console.log("Adicionar um novo lembrete!");
+
+        if (titleInput && insertionDateInput) {
+            const title: string = titleInput.value;
+            const insertionDate : Date = new Date(insertionDateInput.value);
+            const deadline : Date = deadlineInput.value ? new Date(deadlineInput.value) : null;
+            const description: string | null = descriptionInput ? descriptionInput.value : null;
+            const newReminder: Reminder = addReminder(title, insertionDate, deadline, description);
+            reminders.push(newReminder);
+            renderReminderList(reminders);
+
+            // Limpar os campos do formulário
+            clearFormFields();
+
+        } else {
+            console.error("Um ou mais campos de entrada não foram encontrados.");
+        }
+    });
+} else {
+    console.error("O formulário addReminderForm não foi encontrado.");
+}
+
+// Event listener para editar e excluir lembretes
 if (reminderList) {
     reminderList.addEventListener('click', function(event) {
         const target = event.target as HTMLElement;
@@ -162,8 +195,8 @@ if (reminderList) {
             // Abrir o formulário de edição
             // Preencher os campos do formulário com as informações do lembrete selecionado
             titleInput.value = currentEditingReminder[0];
-            insertionDateInput.value = currentEditingReminder[1].toISOString().slice(0, 16);
-            deadlineInput.value = currentEditingReminder[2] ? currentEditingReminder[2].toISOString().slice(0, 16) : '';
+            insertionDateInput.value = formatDateTime(currentEditingReminder[1]);
+            deadlineInput.value = currentEditingReminder[2] ? formatDateTime(currentEditingReminder[2]) : '';
             descriptionInput.value = currentEditingReminder[3] ? currentEditingReminder[3] : '';
 
             console.log("Este é o Lembrete a ser editado: " + currentEditingReminder);
