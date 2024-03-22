@@ -9,6 +9,7 @@ var titleInput = document.getElementById('reminderTitle');
 var insertionDateInput = document.getElementById('insertionDate');
 var deadlineInput = document.getElementById('deadline');
 var descriptionInput = document.getElementById('description');
+var newReminderButton = document.getElementById('newReminderButton');
 var addReminderForm = document.getElementById('addReminderForm');
 var addReminderButton = document.getElementById('addReminderButton');
 var saveEditButton = document.getElementById('saveEditButton');
@@ -26,7 +27,7 @@ function saveEditedReminder(reminder, title, insertionDate, deadline, descriptio
     if (description === void 0) { description = null; }
     var editedReminder = [title, insertionDate, deadline, description];
     var index = reminders.indexOf(reminder);
-    console.log(index);
+    console.log("Index do Reminder a ser Editado: " + index);
     // Verificar se o lembrete a ser editado foi encontrado no array
     if (index !== -1) { // Quando o lembrete a ser editado não é encontrado, normalmente retorna -1
         console.log("Este é o lembrete editado pelo saveEditedReminder: " + editedReminder);
@@ -94,7 +95,7 @@ function renderReminderList(reminders) {
         reminders.forEach(function (reminder, index) {
             var title = reminder[0], insertionDate = reminder[1], deadline = reminder[2], description = reminder[3];
             var listItem = document.createElement('tr');
-            listItem.innerHTML = "\n                <td>".concat(title, "</td>\n                <td>").concat(insertionDate, "</td>\n                <td>").concat(deadline ? deadline : '', "</td>\n                <td>").concat(description ? description : '', "</td>\n                <td>\n                    <button type=\"button\" class=\"btn btn-primary btn-editar\" data-index=\"").concat(index, "\">Editar</button>\n                    <button type=\"button\" class=\"btn btn-danger btn-excluir\" data-index=\"").concat(index, "\">Excluir</button>\n                </td>\n            ");
+            listItem.innerHTML = "\n                <td>".concat(title, "</td>\n                <td>").concat(insertionDate, "</td>\n                <td>").concat(deadline ? deadline : '', "</td>\n                <td>").concat(description ? description : '', "</td>\n                <td>\n                    <button type=\"button\" class=\"btn btn-primary btn-editar\" data-bs-toggle=\"modal\" data-bs-target=\"#modalNovoLembrete\" data-index=\"").concat(index, "\">Editar</button>\n                    <button type=\"button\" class=\"btn btn-danger btn-excluir\" data-index=\"").concat(index, "\">Excluir</button>\n                </td>\n            ");
             if (reminderList)
                 reminderList.appendChild(listItem);
         });
@@ -124,6 +125,17 @@ function saveEditedReminderHandler(event) {
     currentEditingReminder = null;
 }
 /********************************************* EVENTOS *********************************************/
+// Event new reminder para abrir o modal do novo lembrete
+if (newReminderButton) {
+    newReminderButton.addEventListener("click", function (event) {
+        // Limpar os campos do formulário
+        clearFormFields();
+        // Exiba o botão "Salvar"
+        saveEditButton.style.display = 'none';
+        // Esconda o botão "Adicionar Lembrete"
+        addReminderButton.style.display = 'block';
+    });
+}
 // Event listener para adicionar lembrete
 if (addReminderForm) {
     addReminderForm.addEventListener('submit', function (event) {

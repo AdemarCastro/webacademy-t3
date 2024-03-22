@@ -15,6 +15,7 @@ const titleInput: HTMLInputElement | null = document.getElementById('reminderTit
 const insertionDateInput: HTMLInputElement | null = document.getElementById('insertionDate') as HTMLInputElement;
 const deadlineInput: HTMLInputElement | null = document.getElementById('deadline') as HTMLInputElement;
 const descriptionInput: HTMLTextAreaElement | null = document.getElementById('description') as HTMLTextAreaElement;
+const newReminderButton: HTMLButtonElement | null = document.getElementById('newReminderButton') as HTMLButtonElement;
 const addReminderForm: HTMLFormElement | null = document.getElementById('addReminderForm') as HTMLFormElement;
 const addReminderButton: HTMLButtonElement | null = document.getElementById('addReminderButton') as HTMLButtonElement;
 const saveEditButton: HTMLButtonElement | null = document.getElementById('saveEditButton') as HTMLButtonElement;
@@ -31,7 +32,7 @@ function addReminder(title: string, insertionDate: Date, deadline: Date | null =
 function saveEditedReminder(reminder: Reminder, title: string, insertionDate: Date, deadline: Date | null = null, description: string | null = null) : void {
     const editedReminder: Reminder = [title, insertionDate, deadline, description];
     const index : number = reminders.indexOf(reminder);
-    console.log(index);
+    console.log("Index do Reminder a ser Editado: " + index);
 
     // Verificar se o lembrete a ser editado foi encontrado no array
     if (index !== -1) { // Quando o lembrete a ser editado não é encontrado, normalmente retorna -1
@@ -51,6 +52,7 @@ function saveEditedReminder(reminder: Reminder, title: string, insertionDate: Da
         saveEditButton.style.display = 'none';
         // Esconda o botão "Adicionar Lembrete"
         addReminderButton.style.display = 'block';
+
     } else {
         console.error("O lembrete a ser editado não foi encontrado no array de lembretes.");
         console.log("Lembrete a ser editado:", reminder);
@@ -82,23 +84,18 @@ function clearFormFields() : void {
     }
 }
 
-// Função para formatar a data para exibição no formato local
-function formatDate(date: Date): string {
-    return date.toLocaleString();
-}
-
-// Função para adicionar zeros à esquerda, se necessário
+// Função para adicionar zeros à esquerda, se necessário - Necessária para formatDateTime()
 function addLeadingZero(value: number): string {
     return value < 10 ? `0${value}` : `${value}`;
 }
 
 // Função para formatar data e hora para o formato "yyyy-MM-ddThh:mm"
 function formatDateTime(date: Date): string {
-    const year = date.getFullYear();
-    const month = addLeadingZero(date.getMonth() + 1); // Adiciona zero à esquerda se necessário
-    const day = addLeadingZero(date.getDate()); // Adiciona zero à esquerda se necessário
-    const hours = addLeadingZero(date.getHours()); // Adiciona zero à esquerda se necessário
-    const minutes = addLeadingZero(date.getMinutes()); // Adiciona zero à esquerda se necessário
+    const year : number = date.getFullYear();
+    const month : string = addLeadingZero(date.getMonth() + 1); // Adiciona zero à esquerda se necessário
+    const day : string = addLeadingZero(date.getDate()); // Adiciona zero à esquerda se necessário
+    const hours: string = addLeadingZero(date.getHours()); // Adiciona zero à esquerda se necessário
+    const minutes: string = addLeadingZero(date.getMinutes()); // Adiciona zero à esquerda se necessário
     return `${year}-${month}-${day}T${hours}:${minutes}`;
 }
 
@@ -117,7 +114,7 @@ function renderReminderList(reminders: Reminder[]) : void {
                 <td>${deadline ? deadline : ''}</td>
                 <td>${description ? description : ''}</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-editar" data-index="${index}">Editar</button>
+                    <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#modalNovoLembrete" data-index="${index}">Editar</button>
                     <button type="button" class="btn btn-danger btn-excluir" data-index="${index}">Excluir</button>
                 </td>
             `;
@@ -130,6 +127,7 @@ function renderReminderList(reminders: Reminder[]) : void {
 
 // Função para salvar lembrete editado
 function saveEditedReminderHandler(event: MouseEvent): void {
+
     event.preventDefault(); // Evitar o comportamento padrão do formulário
 
     console.log('Passou no saveEditedReminderHandler!');
@@ -156,6 +154,21 @@ function saveEditedReminderHandler(event: MouseEvent): void {
 }
 
 /********************************************* EVENTOS *********************************************/
+
+// Event new reminder para abrir o modal do novo lembrete
+if (newReminderButton) {
+    newReminderButton.addEventListener("click", function (event : MouseEvent) {
+
+        // Limpar os campos do formulário
+        clearFormFields();
+
+        // Exiba o botão "Salvar"
+        saveEditButton.style.display = 'none';
+        // Esconda o botão "Adicionar Lembrete"
+        addReminderButton.style.display = 'block';
+
+    });
+}
 
 // Event listener para adicionar lembrete
 if (addReminderForm) {
@@ -186,8 +199,8 @@ if (addReminderForm) {
 
 // Event listener para editar e excluir lembretes
 if (reminderList) {
-    reminderList.addEventListener('click', function(event) {
-        const target = event.target as HTMLElement;
+    reminderList.addEventListener('click', function(event : MouseEvent) : void {
+        const target : HTMLElement = event.target as HTMLElement;
         if (target.classList.contains('btn-editar')) {
             const index: number = parseInt(target.getAttribute('data-index') || '');
             currentEditingReminder = reminders[index];
