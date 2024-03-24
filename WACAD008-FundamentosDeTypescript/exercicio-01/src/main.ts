@@ -20,9 +20,37 @@ const addReminderForm: HTMLFormElement | null = document.getElementById('addRemi
 const addReminderButton: HTMLButtonElement | null = document.getElementById('addReminderButton') as HTMLButtonElement;
 const saveEditButton: HTMLButtonElement | null = document.getElementById('saveEditButton') as HTMLButtonElement;
 const reminderList: HTMLElement | null = document.getElementById('reminder-list');
-const modal = new bootstrap.Modal(document.getElementById('modalNovoLembrete'));
+const modalElement = document.getElementById('modalNovoLembrete');
+const modal = modalElement && new bootstrap.Modal(modalElement); // Verifica se o modalElement é null antes de passá-lo ao construtor
+
+/********************************************* INTERFACES *********************************************/
+interface User {
+    password: string;
+    name: string;
+    email: string;
+}
 
 /********************************************* FUNÇÕES *********************************************/
+
+// Função para verificar se o usuário está autenticado
+function checkAuthentication(): boolean {
+    const authenticated : string | null = localStorage.getItem('authToken') ? localStorage.getItem('authToken') : "";
+    return authenticated === 'true';
+}
+
+// Função para exibir o nome do usuário ao ser autenticado
+function displayUserName(): void {
+    const userNameElement: HTMLElement | null = document.getElementById('userName');
+    if (userNameElement) {
+        const userString: string | null = localStorage.getItem('currentUser');
+        if (userString) {
+            const user: User = JSON.parse(userString);
+            if (user && user.name) {
+                userNameElement.textContent = `Olá, ${user.name}!`;
+            }
+        }
+    }
+}
 
 // Função para adicionar um lembrete
 function addReminder(title: string, insertionDate: Date, deadline: Date | null = null, description: string | null = null): Reminder {
@@ -65,13 +93,14 @@ function saveEditedReminderHandler(event: MouseEvent): void {
     }
 
     // Capturar os valores dos campos do formulário
-    const title: string = titleInput.value;
-    const insertionDate: Date = new Date(insertionDateInput.value);
-    const deadline: Date | null = deadlineInput.value ? new Date(deadlineInput.value) : null;
-    const description: string | null = descriptionInput.value ? descriptionInput.value : null;
+    const title: string = titleInput?.value ?? '';
+    const insertionDate: Date = new Date(insertionDateInput?.value ?? '');
+    const deadline: Date | null = deadlineInput?.value ? new Date(deadlineInput.value) : null;
+    const description: string | null = descriptionInput?.value ?? null;
+
 
     // Fecha o modal do bootstrap
-    modal.hide();
+    modal?.hide();
 
     // Chamar a função saveEditedReminder com os valores capturados
     saveEditedReminder(currentEditingReminder, title, insertionDate, deadline, description);
@@ -144,8 +173,8 @@ function renderReminderList(reminders: Reminder[]) : void {
             listItem.innerHTML = `
                 <td>${title}</td>
                 <td>${formatViewDataTime(insertionDate)}</td>
-                <td>${deadline ? formatViewDataTime(deadline) : 'Não há'}</td>
-                <td style="max-width: 150px;" class="text-truncate" data-bs-toggle="modal" data-bs-target="#descricaoCompletaModal" data-descricao="${description}">${description}</td>
+                <td>${deadline ? formatViewDataTime(deadline) : "Não há"}</td>
+                <td style="max-width: 150px;" class="text-truncate" data-bs-toggle="modal" data-bs-target="#descricaoCompletaModal" data-descricao="${description}">${description ? description : "Sem descrição"}</td>
                 <td>
                     <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#modalNovoLembrete" data-index="${index}">Editar</button>
                     <button type="button" class="btn btn-danger btn-excluir" data-index="${index}">Excluir</button>
@@ -172,6 +201,17 @@ function renderReminderList(reminders: Reminder[]) : void {
 
 /********************************************* EVENTOS *********************************************/
 
+// Verificar se o usuário está autenticado antes de permitir o acesso à página
+window.addEventListener('DOMContentLoaded', () => {
+    if (!checkAuthentication()) {
+        // Se o usuário não estiver autenticado, redirecione para a página de login
+        window.location.href = 'login.html';
+    } else {
+        // Exibi o nome do usuário
+        displayUserName();
+    }
+});
+
 // Event new reminder para abrir o modal do novo lembrete
 if (newReminderButton) {
     newReminderButton.addEventListener("click", function (event : MouseEvent) {
@@ -197,14 +237,14 @@ if (addReminderForm) {
         if (titleInput && insertionDateInput) {
             const title: string = titleInput.value;
             const insertionDate : Date = new Date(insertionDateInput.value);
-            const deadline : Date = deadlineInput.value ? new Date(deadlineInput.value) : null;
+            const deadline : Date | null = deadlineInput.value ? new Date(deadlineInput.value) : null;
             const description: string | null = descriptionInput ? descriptionInput.value : null;
             const newReminder: Reminder = addReminder(title, insertionDate, deadline, description);
             reminders.push(newReminder);
             renderReminderList(reminders);
 
             // Fecha o modal do bootstrap
-            modal.hide();
+            modal?.hide();
 
             // Limpar os campos do formulário
             clearFormFields();
@@ -229,8 +269,13 @@ if (reminderList) {
             // Preencher os campos do formulário com as informações do lembrete selecionado
             titleInput.value = currentEditingReminder[0];
             insertionDateInput.value = formatDateTime(currentEditingReminder[1]);
+
+            // As duas linhas abaixo no meu compilador apitam um erro, mas os erros não fazem nenhum sentido,
+            // já que estou fazendo uma verificação de nulidade antes de atribuir o valor ao
+            // .value que só pode ser de um tipo (DATE e STRING) respectivamente
             deadlineInput.value = currentEditingReminder[2] ? formatDateTime(currentEditingReminder[2]) : '';
             descriptionInput.value = currentEditingReminder[3] ? currentEditingReminder[3] : '';
+
 
             console.log("Este é o Lembrete a ser editado: " + currentEditingReminder);
 
