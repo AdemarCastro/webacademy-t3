@@ -17,6 +17,7 @@ const saveEditButton = document.getElementById('saveEditButton');
 const reminderList = document.getElementById('reminder-list');
 const modalElement = document.getElementById('modalNovoLembrete');
 const modal = modalElement && new bootstrap.Modal(modalElement); // Verifica se o modalElement é null antes de passá-lo ao construtor
+const exitButton = document.getElementById('exitButton');
 /********************************************* FUNÇÕES *********************************************/
 // Função para verificar se o usuário está autenticado
 function checkAuthentication() {
@@ -162,6 +163,13 @@ function renderReminderList(reminders) {
         console.error("O elemento reminder-list não foi encontrado.");
     }
 }
+// Função para sair da aplicação
+function exitApp() {
+    // Limpa o localStorage para que apague os usuários criados
+    localStorage.clear();
+    // Retorna a tela de login
+    window.location.href = 'login.html';
+}
 /********************************************* EVENTOS *********************************************/
 // Verificar se o usuário está autenticado antes de permitir o acesso à página
 window.addEventListener('DOMContentLoaded', () => {
@@ -250,6 +258,13 @@ if (saveEditButton) {
 }
 else {
     console.error("O botão saveEditButton não foi encontrado.");
+}
+// Event exit para sair da aplicação e voltar a rota inicial
+if (exitButton) {
+    exitButton.addEventListener('click', exitApp);
+}
+else {
+    console.error("O botão exitButton não foi encontrado.");
 }
 // Renderizar a lista inicial de lembretes (se houver)
 renderReminderList(reminders);

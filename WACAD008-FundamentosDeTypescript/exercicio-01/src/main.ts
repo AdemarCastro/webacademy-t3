@@ -22,6 +22,7 @@ const saveEditButton: HTMLButtonElement | null = document.getElementById('saveEd
 const reminderList: HTMLElement | null = document.getElementById('reminder-list');
 const modalElement = document.getElementById('modalNovoLembrete');
 const modal = modalElement && new bootstrap.Modal(modalElement); // Verifica se o modalElement é null antes de passá-lo ao construtor
+const exitButton : HTMLElement | null = document.getElementById('exitButton') as HTMLButtonElement;
 
 /********************************************* INTERFACES *********************************************/
 interface User {
@@ -199,6 +200,15 @@ function renderReminderList(reminders: Reminder[]) : void {
     }
 }
 
+// Função para sair da aplicação
+function exitApp() : void {
+    // Limpa o localStorage para que apague os usuários criados
+    localStorage.clear();
+
+    // Retorna a tela de login
+    window.location.href = 'login.html';
+}
+
 /********************************************* EVENTOS *********************************************/
 
 // Verificar se o usuário está autenticado antes de permitir o acesso à página
@@ -301,6 +311,13 @@ if (saveEditButton) {
     saveEditButton.addEventListener('click', saveEditedReminderHandler);
 } else {
     console.error("O botão saveEditButton não foi encontrado.");
+}
+
+// Event exit para sair da aplicação e voltar a rota inicial
+if (exitButton) {
+    exitButton.addEventListener('click', exitApp);
+} else {
+    console.error("O botão exitButton não foi encontrado.");
 }
 
 // Renderizar a lista inicial de lembretes (se houver)
