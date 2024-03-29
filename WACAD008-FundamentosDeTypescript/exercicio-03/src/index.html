@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Esc. do Prof. Raimundo</title>
+
+    <!-- Importando o Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<!-- navbar -->
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Esc. do Prof. Raimundo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nova Turma</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button id="exitButton" class="btn btn-dark">Sair</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- navbar -->
+
+<!-- Adicionando a seção de produtos -->
+<div class="container mt-5">
+    <h2>Produtos:</h2>
+    <div class="row">
+        <div class="col text-end">
+            <button type="button" id="newProdutoButton" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalNovoProduto">Novo Produto</button>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Fabricante</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Detalhes</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                </thead>
+                <tbody id="produto-list">
+                <!-- Aqui será adicionada a lista de produtos via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Adicionando a seção de produtos -->
+
+
+<!-- Modal para adicionar produto -->
+<div class="modal fade" id="modalNovoProduto" tabindex="-1" aria-labelledby="modalNovoProdutoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-dark">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalNovoProdutoLabel">Novo Produto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addProdutoForm">
+                    <div class="mb-3">
+                        <label for="produtoTipo" class="form-label">Tipo de Produto <span class="text-danger">*</span></label>
+                        <select class="form-select" id="produtoTipo" required>
+                            <option value="tv">TV</option>
+                            <option value="celular">Celular</option>
+                            <option value="bicicleta">Bicicleta</option>
+                        </select>
+                    </div>
+                    <!-- Campos específicos para TV -->
+                    <div id="camposTv" style="display: none;">
+                        <div class="mb-3">
+                            <label for="tvResolucao" class="form-label">Resolução <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="tvResolucao" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tvTamanhoPolegadas" class="form-label">Tamanho em Polegadas <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="tvTamanhoPolegadas" required>
+                        </div>
+                    </div>
+                    <!-- Campos específicos para Celular -->
+                    <div id="camposCelular" style="display: none;">
+                        <div class="mb-3">
+                            <label for="celularMemoria" class="form-label">Memória <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="celularMemoria" required>
+                        </div>
+                    </div>
+                    <!-- Campos específicos para Bicicleta -->
+                    <div id="camposBicicleta" style="display: none;">
+                        <div class="mb-3">
+                            <label for="bicicletaTamanhoAro" class="form-label">Tamanho do Aro <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="bicicletaTamanhoAro" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="produtoModelo" class="form-label">Modelo <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="produtoModelo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="produtoFabricante" class="form-label">Fabricante <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="produtoFabricante" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="produtoValor" class="form-label">Valor <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text">R$</span>
+                            <input type="number" class="form-control" id="produtoValor" required>
+                        </div>
+                    </div>
+                    <button type="submit" id="addProdutoButton" class="btn btn-primary w-100">Adicionar Produto</button>
+                    <button type="submit" id="saveEditProdutoButton" class="btn btn-success w-100">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal para adicionar produto -->
+
+<!-- Adicionando a seção de estatísticas do valor total do carrinho -->
+<div class="container mt-5">
+    <h2>Estatísticas do Carrinho:</h2>
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h5>Valor Total do Carrinho:</h5>
+            <div class="progress">
+                <div id="totalBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <p id="total" class="mt-2">Total: R$ 0.00</p>
+        </div>
+    </div>
+</div>
+<!-- Fim da seção de estatísticas do valor total do carrinho -->
+
+
+<!-- Importando os scripts JavaScript -->
+<script src="main.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
