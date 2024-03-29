@@ -99,7 +99,6 @@ function saveEditedReminderHandler(event: MouseEvent): void {
     const deadline: Date | null = deadlineInput?.value ? new Date(deadlineInput.value) : null;
     const description: string | null = descriptionInput?.value ?? null;
 
-
     // Fecha o modal do bootstrap
     modal?.hide();
 
@@ -240,27 +239,33 @@ if (newReminderButton) {
 // Event listener para adicionar lembrete
 if (addReminderForm) {
     addReminderForm.addEventListener('submit', function(event : SubmitEvent): void {
-        event.preventDefault(); // Evitar o comportamento padrão do formulário
 
-        console.log("Adicionar um novo lembrete!");
+        // Verifica se o botão "Adicionar Aluno" está visível
+        if (addReminderButton && addReminderButton.style.display !== 'none') {
+            event.preventDefault(); // Evitar o comportamento padrão do formulário
 
-        if (titleInput && insertionDateInput) {
-            const title: string = titleInput.value;
-            const insertionDate : Date = new Date(insertionDateInput.value);
-            const deadline : Date | null = deadlineInput.value ? new Date(deadlineInput.value) : null;
-            const description: string | null = descriptionInput ? descriptionInput.value : null;
-            const newReminder: Reminder = addReminder(title, insertionDate, deadline, description);
-            reminders.push(newReminder);
-            renderReminderList(reminders);
+            console.log("Adicionar um novo lembrete!");
 
-            // Fecha o modal do bootstrap
-            modal?.hide();
+            if (titleInput && insertionDateInput) {
+                const title: string = titleInput.value;
+                const insertionDate : Date = new Date(insertionDateInput.value);
+                const deadline : Date | null = deadlineInput.value ? new Date(deadlineInput.value) : null;
+                const description: string | null = descriptionInput ? descriptionInput.value : null;
+                const newReminder: Reminder = addReminder(title, insertionDate, deadline, description);
+                reminders.push(newReminder);
+                renderReminderList(reminders);
 
-            // Limpar os campos do formulário
-            clearFormFields();
+                // Fecha o modal do bootstrap
+                modal?.hide();
 
+                // Limpar os campos do formulário
+                clearFormFields();
+
+            } else {
+                console.error("Um ou mais campos de entrada não foram encontrados.");
+            }
         } else {
-            console.error("Um ou mais campos de entrada não foram encontrados.");
+            event.preventDefault(); // Se estiver oculto, impede o comportamento padrão de submissão
         }
     });
 } else {
