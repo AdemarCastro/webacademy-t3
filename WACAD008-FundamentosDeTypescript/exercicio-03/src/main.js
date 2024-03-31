@@ -92,7 +92,7 @@ function renderProdutoList(produtos) {
                 <td>${produto.valor}</td>
                 <td>${detalhesProduto}</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-editar" data-index="${index}" data-bs-toggle="modal" data-bs-target="#modalEditarProduto">Editar</button>
+                    <button type="button" class="btn btn-primary btn-editar" data-index="${index}" data-bs-toggle="modal" data-bs-target="#modalNovoProduto">Editar</button>
                     <button type="button" class="btn btn-danger btn-excluir" data-index="${index}">Excluir</button>
                 </td>
             `;
@@ -267,43 +267,35 @@ function deleteProdutoHandler(index) {
 // Função para atualizar o total do carrinho
 function updateTotal() {
     const totalElement = document.getElementById('total');
-    const totalBar = document.getElementById('totalBar');
-    if (totalElement && totalBar) {
+    if (totalElement) {
         const total = carrinho.calcularTotal();
         totalElement.textContent = `Total: R$ ${total.toFixed(2)}`;
-        // Ajustar a largura da barra de progresso com base no valor total
-        const totalWidthPercentage = (total / 1000) * 100; // Assume uma largura máxima de 1000
-        totalBar.style.width = totalWidthPercentage + "%";
-        totalBar.setAttribute('aria-valuenow', totalWidthPercentage.toString());
     }
     else {
         console.error("O elemento total ou totalBar não foi encontrado.");
     }
 }
 /********************************************* EVENTOS *********************************************/
+// Exibir campos de TV inicialmente
+if (camposTv) {
+    camposTv.style.display = 'block';
+}
 // Event listener para alterar os campos do formulário com base no tipo de produto selecionado
 if (produtoTipoSelect && camposTv && camposCelular && camposBicicleta) {
     produtoTipoSelect.addEventListener('change', function (event) {
         const tipoSelecionado = produtoTipoSelect.value;
-        if (tipoSelecionado === 'tv') {
-            camposTv.style.display = 'block';
-            camposCelular.style.display = 'none';
-            camposBicicleta.style.display = 'none';
+        camposTv.style.display = tipoSelecionado === 'tv' ? 'block' : 'none';
+        camposCelular.style.display = tipoSelecionado === 'celular' ? 'block' : 'none';
+        camposBicicleta.style.display = tipoSelecionado === 'bicicleta' ? 'block' : 'none';
+        if (resolucaoInput && tamanhoPolegadasInput) {
+            resolucaoInput.required = tipoSelecionado === 'tv';
+            tamanhoPolegadasInput.required = tipoSelecionado === 'tv';
         }
-        else if (tipoSelecionado === 'celular') {
-            camposTv.style.display = 'none';
-            camposCelular.style.display = 'block';
-            camposBicicleta.style.display = 'none';
+        if (memoriaInput) {
+            memoriaInput.required = tipoSelecionado === 'celular';
         }
-        else if (tipoSelecionado === 'bicicleta') {
-            camposTv.style.display = 'none';
-            camposCelular.style.display = 'none';
-            camposBicicleta.style.display = 'block';
-        }
-        else {
-            camposTv.style.display = 'none';
-            camposCelular.style.display = 'none';
-            camposBicicleta.style.display = 'none';
+        if (tamanhoAroInput) {
+            tamanhoAroInput.required = tipoSelecionado === 'bicicleta';
         }
     });
 }
@@ -354,8 +346,6 @@ if (produtoList) {
                         camposTv.style.display = 'block';
                         camposCelular.style.display = 'none';
                         camposBicicleta.style.display = 'none';
-                        const resolucaoInput = document.getElementById('tvResolucao');
-                        const tamanhoPolegadasInput = document.getElementById('tvTamanhoPolegadas');
                         if (resolucaoInput && tamanhoPolegadasInput) {
                             resolucaoInput.value = currentEditingProduto.resolucao;
                             tamanhoPolegadasInput.value = currentEditingProduto.tamanhoPolegadas;
@@ -369,7 +359,6 @@ if (produtoList) {
                         camposTv.style.display = 'none';
                         camposCelular.style.display = 'block';
                         camposBicicleta.style.display = 'none';
-                        const memoriaInput = document.getElementById('celularMemoria');
                         if (memoriaInput) {
                             memoriaInput.value = currentEditingProduto.memoria;
                         }
@@ -382,7 +371,6 @@ if (produtoList) {
                         camposTv.style.display = 'none';
                         camposCelular.style.display = 'none';
                         camposBicicleta.style.display = 'block';
-                        const tamanhoAroInput = document.getElementById('bicicletaTamanhoAro');
                         if (tamanhoAroInput) {
                             tamanhoAroInput.value = currentEditingProduto.tamanhoAro;
                         }

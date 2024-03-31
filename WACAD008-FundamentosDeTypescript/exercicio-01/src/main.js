@@ -196,23 +196,29 @@ if (newReminderButton) {
 // Event listener para adicionar lembrete
 if (addReminderForm) {
     addReminderForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // Evitar o comportamento padrão do formulário
-        console.log("Adicionar um novo lembrete!");
-        if (titleInput && insertionDateInput) {
-            const title = titleInput.value;
-            const insertionDate = new Date(insertionDateInput.value);
-            const deadline = deadlineInput.value ? new Date(deadlineInput.value) : null;
-            const description = descriptionInput ? descriptionInput.value : null;
-            const newReminder = addReminder(title, insertionDate, deadline, description);
-            reminders.push(newReminder);
-            renderReminderList(reminders);
-            // Fecha o modal do bootstrap
-            modal === null || modal === void 0 ? void 0 : modal.hide();
-            // Limpar os campos do formulário
-            clearFormFields();
+        // Verifica se o botão "Adicionar Aluno" está visível
+        if (addReminderButton && addReminderButton.style.display !== 'none') {
+            event.preventDefault(); // Evitar o comportamento padrão do formulário
+            console.log("Adicionar um novo lembrete!");
+            if (titleInput && insertionDateInput) {
+                const title = titleInput.value;
+                const insertionDate = new Date(insertionDateInput.value);
+                const deadline = deadlineInput.value ? new Date(deadlineInput.value) : null;
+                const description = descriptionInput ? descriptionInput.value : null;
+                const newReminder = addReminder(title, insertionDate, deadline, description);
+                reminders.push(newReminder);
+                renderReminderList(reminders);
+                // Fecha o modal do bootstrap
+                modal === null || modal === void 0 ? void 0 : modal.hide();
+                // Limpar os campos do formulário
+                clearFormFields();
+            }
+            else {
+                console.error("Um ou mais campos de entrada não foram encontrados.");
+            }
         }
         else {
-            console.error("Um ou mais campos de entrada não foram encontrados.");
+            event.preventDefault(); // Se estiver oculto, impede o comportamento padrão de submissão
         }
     });
 }

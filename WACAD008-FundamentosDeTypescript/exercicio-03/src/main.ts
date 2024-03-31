@@ -114,7 +114,7 @@ function renderProdutoList(produtos: Produto[]) : void {
                 <td>${produto.valor}</td>
                 <td>${detalhesProduto}</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-editar" data-index="${index}" data-bs-toggle="modal" data-bs-target="#modalEditarProduto">Editar</button>
+                    <button type="button" class="btn btn-primary btn-editar" data-index="${index}" data-bs-toggle="modal" data-bs-target="#modalNovoProduto">Editar</button>
                     <button type="button" class="btn btn-danger btn-excluir" data-index="${index}">Excluir</button>
                 </td>
             `;
@@ -321,15 +321,10 @@ function deleteProdutoHandler(index: number): void {
 // Função para atualizar o total do carrinho
 function updateTotal(): void {
     const totalElement: HTMLElement | null = document.getElementById('total');
-    const totalBar: HTMLElement | null = document.getElementById('totalBar');
-    if (totalElement && totalBar) {
+
+    if (totalElement) {
         const total: number = carrinho.calcularTotal();
         totalElement.textContent = `Total: R$ ${total.toFixed(2)}`;
-
-        // Ajustar a largura da barra de progresso com base no valor total
-        const totalWidthPercentage = (total / 1000) * 100; // Assume uma largura máxima de 1000
-        totalBar.style.width = totalWidthPercentage + "%";
-        totalBar.setAttribute('aria-valuenow', totalWidthPercentage.toString());
     } else {
         console.error("O elemento total ou totalBar não foi encontrado.");
     }
@@ -337,26 +332,28 @@ function updateTotal(): void {
 
 /********************************************* EVENTOS *********************************************/
 
+// Exibir campos de TV inicialmente
+if (camposTv) {
+    camposTv.style.display = 'block';
+}
+
 // Event listener para alterar os campos do formulário com base no tipo de produto selecionado
 if (produtoTipoSelect && camposTv && camposCelular && camposBicicleta) {
-    produtoTipoSelect.addEventListener('change', function(event) {
-        const tipoSelecionado = produtoTipoSelect.value;
-        if (tipoSelecionado === 'tv') {
-            camposTv.style.display = 'block';
-            camposCelular.style.display = 'none';
-            camposBicicleta.style.display = 'none';
-        } else if (tipoSelecionado === 'celular') {
-            camposTv.style.display = 'none';
-            camposCelular.style.display = 'block';
-            camposBicicleta.style.display = 'none';
-        } else if (tipoSelecionado === 'bicicleta') {
-            camposTv.style.display = 'none';
-            camposCelular.style.display = 'none';
-            camposBicicleta.style.display = 'block';
-        } else {
-            camposTv.style.display = 'none';
-            camposCelular.style.display = 'none';
-            camposBicicleta.style.display = 'none';
+    produtoTipoSelect.addEventListener('change', function(event : Event) : void {
+        const tipoSelecionado : string = produtoTipoSelect.value;
+        camposTv.style.display = tipoSelecionado === 'tv' ? 'block' : 'none';
+        camposCelular.style.display = tipoSelecionado === 'celular' ? 'block' : 'none';
+        camposBicicleta.style.display = tipoSelecionado === 'bicicleta' ? 'block' : 'none';
+
+        if (resolucaoInput && tamanhoPolegadasInput) {
+            resolucaoInput.required = tipoSelecionado === 'tv';
+            tamanhoPolegadasInput.required = tipoSelecionado === 'tv';
+        }
+        if (memoriaInput) {
+            memoriaInput.required = tipoSelecionado === 'celular';
+        }
+        if (tamanhoAroInput) {
+            tamanhoAroInput.required = tipoSelecionado === 'bicicleta';
         }
     });
 } else {
@@ -412,9 +409,6 @@ if (produtoList) {
                         camposCelular.style.display = 'none';
                         camposBicicleta.style.display = 'none';
 
-                        const resolucaoInput: HTMLInputElement | null = document.getElementById('tvResolucao') as HTMLInputElement;
-                        const tamanhoPolegadasInput: HTMLInputElement | null = document.getElementById('tvTamanhoPolegadas') as HTMLInputElement;
-
                         if (resolucaoInput && tamanhoPolegadasInput) {
                             resolucaoInput.value = currentEditingProduto.resolucao;
                             tamanhoPolegadasInput.value = currentEditingProduto.tamanhoPolegadas;
@@ -427,8 +421,6 @@ if (produtoList) {
                         camposCelular.style.display = 'block';
                         camposBicicleta.style.display = 'none';
 
-                        const memoriaInput: HTMLInputElement | null = document.getElementById('celularMemoria') as HTMLInputElement;
-
                         if (memoriaInput) {
                             memoriaInput.value = currentEditingProduto.memoria;
                         } else {
@@ -439,8 +431,6 @@ if (produtoList) {
                         camposTv.style.display = 'none';
                         camposCelular.style.display = 'none';
                         camposBicicleta.style.display = 'block';
-
-                        const tamanhoAroInput: HTMLInputElement | null = document.getElementById('bicicletaTamanhoAro') as HTMLInputElement;
 
                         if (tamanhoAroInput) {
                             tamanhoAroInput.value = currentEditingProduto.tamanhoAro;
@@ -481,4 +471,5 @@ if (saveEditProdutoButton) {
     console.error("O botão saveEditProdutoButton não foi encontrado.");
 }
 
+// Atualiza o total do carrinho logo ao abrir a aplicação
 updateTotal();
