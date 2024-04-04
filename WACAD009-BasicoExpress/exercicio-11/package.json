@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx nodemon src/controllers/mainController.ts",
-    "build": "npx tsc",
+    "build": "npx tsc && npm run build-css",
+    "build-css": "node-sass public/scss -o public/css --output-style compressed",
     "start:prod": "node build/index.js"
   },
   "keywords": [],
@@ -30,6 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
     "eslint": "^8.57.0",
+    "node-sass": "^9.0.0",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
