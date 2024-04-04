@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Tecnologias Node.js</title>
+</head>
+<body>
+<h1>Tecnologias Desenvolvidas com Node.js</h1>
+<ul>
+    {{#each technologies}}
+        {{#if poweredByNodejs}}
+            <li>{{name}} - {{type}}</li>
+        {{/if}}
+    {{/each}}
+</ul>
+</body>
+</html>
