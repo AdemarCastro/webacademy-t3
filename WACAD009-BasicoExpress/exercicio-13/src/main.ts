@@ -1,5 +1,5 @@
 import express from 'express';
-import router from "./routers/router";
+import produtoRouter from "./routers/produtoRouter";
 
 const app = express();
 const PORT = process.env.PORT || 4444;
@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 4444;
 app.use(express.urlencoded({extended: false}));
 
 // Definição das rotas
-app.use(router);
+app.use(produtoRouter);
 
 app.listen(PORT, () => {
     console.log(`Servidor está rodando na porta: ${PORT}.`);
