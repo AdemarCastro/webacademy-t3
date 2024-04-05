@@ -1,0 +1,7 @@
+Para navegar entre as pastas da aplicação, comece colocando link abaixo:
+
+http://localhost:3000/
+
+Ao inserir o link abaixo, é possível observar o link ".. (Voltar)" como primeiro item
+
+http://localhost:3000/pasta-01/pasta-02
