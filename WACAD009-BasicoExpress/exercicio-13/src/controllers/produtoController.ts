@@ -39,7 +39,7 @@ async function read(req: Request, res: Response) {
     const data = fs.readFileSync(dbPath, "utf-8");
     const produtos = JSON.parse(data).produtos;
     const produto = produtos.find(
-      (p: { id: string }) => p.id === req.params.id
+      (p: { id: number }) => p.id === parseInt(req.params.id)
     );
     if (!produto)
       return res.status(404).json({ message: "Produto não encontrado" });
