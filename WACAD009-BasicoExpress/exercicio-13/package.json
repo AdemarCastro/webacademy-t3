@@ -9,7 +9,7 @@
     "start:db": "npx json-server --watch data/db.json --port 3355",
     "build": "npx tsc && npm run build-css",
     "build-css": "node-sass public/scss -o public/css --output-style compressed",
-    "start:prod": "node build/index.js"
+    "start:prod": "npx nodemon build/main.js"
   },
   "keywords": [],
   "author": "",
