@@ -17,6 +17,12 @@
       "nome": "Monitor",
       "preco": 150,
       "estoque": 12
+    },
+    {
+      "id": 4,
+      "nome": "Playstation 5",
+      "preco": 3999,
+      "estoque": 100
     }
   ]
 }
