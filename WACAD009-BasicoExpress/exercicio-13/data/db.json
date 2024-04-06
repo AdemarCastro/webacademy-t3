@@ -19,10 +19,10 @@
       "estoque": 100
     },
     {
-      "id": 5,
-      "nome": "Teclado",
-      "preco": 150,
-      "estoque": 46
+      "id": 6,
+      "nome": "Super Nintendo",
+      "preco": 8600,
+      "estoque": 1
     }
   ]
 }

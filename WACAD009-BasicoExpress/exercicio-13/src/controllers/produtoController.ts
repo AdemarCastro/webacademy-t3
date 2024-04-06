@@ -32,9 +32,15 @@ async function create(req: Request, res: Response) {
     // Parseia os dados para obter o objeto do banco de dados
     const db = JSON.parse(data);
 
+    // Obtém o último produto do array de produtos
+    const ultimoProduto = db.produtos.pop();
+
+    // Verifica se há produtos no banco de dados
+    const novoId = ultimoProduto ? ultimoProduto.id + 1 : 1;
+
     // Cria um novo objeto de produto com base nos dados da requisição
     const novoProduto = {
-      id: db.produtos.length + 1,
+      id: novoId,
       nome: req.body.nome,
       preco: req.body.preco,
       estoque: req.body.estoque,
