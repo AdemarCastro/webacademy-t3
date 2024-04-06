@@ -1,12 +1,6 @@
 {
   "produtos": [
     {
-      "id": 1,
-      "nome": "Celular",
-      "preco": 100,
-      "estoque": 10
-    },
-    {
       "id": 2,
       "nome": "Tablet",
       "preco": 200,
@@ -23,6 +17,12 @@
       "nome": "Playstation 5",
       "preco": 3999,
       "estoque": 100
+    },
+    {
+      "id": 5,
+      "nome": "Teclado",
+      "preco": 150,
+      "estoque": 46
     }
   ]
 }
