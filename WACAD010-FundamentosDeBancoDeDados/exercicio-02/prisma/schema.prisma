@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Cliente {
+  id              Int        @id @default(autoincrement())
+  nome_completo   String
+  cpf             String     @unique
+  numeros_celular String
+  email           String     @unique
+  data_nascimento String
+  Endereco        Endereco[]
+}
+
+model Endereco {
+  id          Int       @id @default(autoincrement())
+  cep         String
+  pais        String
+  estado      String
+  cidade      String
+  bairro      String
+  rua         String
+  numero      String
+  ts_adiciona DateTime  @default(now())
+  ts_exclui   DateTime?
+  id_cliente  Int
+  Cliente     Cliente   @relation(fields: [id_cliente], references: [id])
+  Compra      Compra[]
+}
+
+model Categoria {
+  id           Int            @id @default(autoincrement())
+  nome         String
+  descricao    String
+  Subcategoria Subcategoria[]
+}
+
+model Subcategoria {
+  id           Int       @id @default(autoincrement())
+  nome         String
+  descricao    String
+  id_categoria Int
+  Categoria    Categoria @relation(fields: [id_categoria], references: [id])
+  Produto      Produto[]
+}
+
+model Produto {
+  id              Int               @id @default(autoincrement())
+  modelo          String
+  fabricante      String
+  preco_base      Float
+  estoque         String
+  id_subcategoria Int
+  Subcategoria    Subcategoria      @relation(fields: [id_subcategoria], references: [id])
+  Numero_de_Serie Numero_de_Serie[]
+  Detalhes_Compra Detalhes_Compra[]
+}
+
+model Numero_de_Serie {
+  id              Int               @id @default(autoincrement())
+  num_serie       String
+  status          String
+  ts_adiciona     DateTime          @default(now())
+  ts_vende        DateTime?
+  id_produto      Int
+  Produto         Produto           @relation(fields: [id_produto], references: [id])
+  Detalhes_Compra Detalhes_Compra[]
+}
+
+model Compra {
+  id              Int               @id @default(autoincrement())
+  data_hora       DateTime          @default(now())
+  desconto        String
+  forma_pagamento String
+  total_compra    Float
+  id_endereco     Int
+  Endereco        Endereco          @relation(fields: [id_endereco], references: [id])
+  Detalhes_Compra Detalhes_Compra[]
+}
+
+model Detalhes_Compra {
+  id                 Int             @id @default(autoincrement())
+  id_compra          Int
+  id_produto         Int
+  id_numero_de_serie Int
+  Compra             Compra          @relation(fields: [id_compra], references: [id])
+  Produto            Produto         @relation(fields: [id_produto], references: [id])
+  Numero_de_Serie    Numero_de_Serie @relation(fields: [id_numero_de_serie], references: [id])
+}
