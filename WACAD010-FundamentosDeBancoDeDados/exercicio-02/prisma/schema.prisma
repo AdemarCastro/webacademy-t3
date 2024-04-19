@@ -20,7 +20,7 @@ model Cliente {
   numeros_celular String
   email           String     @unique
   data_nascimento String
-  Endereco        Endereco[]
+  enderecos       Endereco[]
 }
 
 model Endereco {
@@ -35,15 +35,15 @@ model Endereco {
   ts_adiciona DateTime  @default(now())
   ts_exclui   DateTime?
   id_cliente  Int
-  Cliente     Cliente   @relation(fields: [id_cliente], references: [id])
-  Compra      Compra[]
+  cliente     Cliente   @relation(fields: [id_cliente], references: [id])
+  compras     Compra[]
 }
 
 model Categoria {
   id           Int            @id @default(autoincrement())
   nome         String
   descricao    String
-  Subcategoria Subcategoria[]
+  subcategoria Subcategoria[]
 }
 
 model Subcategoria {
@@ -51,8 +51,8 @@ model Subcategoria {
   nome         String
   descricao    String
   id_categoria Int
-  Categoria    Categoria @relation(fields: [id_categoria], references: [id])
-  Produto      Produto[]
+  categoria    Categoria @relation(fields: [id_categoria], references: [id])
+  produto      Produto[]
 }
 
 model Produto {
@@ -63,8 +63,8 @@ model Produto {
   estoque         String
   id_subcategoria Int
   Subcategoria    Subcategoria      @relation(fields: [id_subcategoria], references: [id])
-  Numero_de_Serie Numero_de_Serie[]
-  Detalhes_Compra Detalhes_Compra[]
+  numero_de_Serie Numero_de_Serie[]
+  detalhes_Compra Detalhes_Compra[]
 }
 
 model Numero_de_Serie {
@@ -74,8 +74,8 @@ model Numero_de_Serie {
   ts_adiciona     DateTime          @default(now())
   ts_vende        DateTime?
   id_produto      Int
-  Produto         Produto           @relation(fields: [id_produto], references: [id])
-  Detalhes_Compra Detalhes_Compra[]
+  produto         Produto           @relation(fields: [id_produto], references: [id])
+  detalhes_Compra Detalhes_Compra[]
 }
 
 model Compra {
@@ -85,8 +85,8 @@ model Compra {
   forma_pagamento String
   total_compra    Float
   id_endereco     Int
-  Endereco        Endereco          @relation(fields: [id_endereco], references: [id])
-  Detalhes_Compra Detalhes_Compra[]
+  endereco        Endereco          @relation(fields: [id_endereco], references: [id])
+  detalhes_Compra Detalhes_Compra[]
 }
 
 model Detalhes_Compra {
@@ -94,7 +94,18 @@ model Detalhes_Compra {
   id_compra          Int
   id_produto         Int
   id_numero_de_serie Int
-  Compra             Compra          @relation(fields: [id_compra], references: [id])
-  Produto            Produto         @relation(fields: [id_produto], references: [id])
-  Numero_de_Serie    Numero_de_Serie @relation(fields: [id_numero_de_serie], references: [id])
+  compra             Compra          @relation(fields: [id_compra], references: [id])
+  produto            Produto         @relation(fields: [id_produto], references: [id])
+  numero_de_Serie    Numero_de_Serie @relation(fields: [id_numero_de_serie], references: [id])
+}
+
+model CategoriesOnPosts {
+  post       Post     @relation(fields: [postId], references: [id])
+  postId     Int
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  assignedAt DateTime @default(now())
+  assignedBy String
+
+  @@id([postId, categoryId])
 }
