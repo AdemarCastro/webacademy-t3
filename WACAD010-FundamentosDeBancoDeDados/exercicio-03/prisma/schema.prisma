@@ -15,12 +15,14 @@ datasource db {
 
 model Cliente {
   id              Int        @id @default(autoincrement())
-  nome_completo   String
-  cpf             String     @unique
-  numeros_celular String
-  email           String     @unique
-  data_nascimento String
+  nome_completo   String     @db.VarChar(120)
+  cpf             String     @unique @db.VarChar(14)
+  numeros_celular String     @db.VarChar(50)
+  email           String     @unique @db.VarChar(120)
+  data_nascimento String     @db.VarChar(10)
   enderecos       Endereco[]
+
+  @@map("clientes")
 }
 
 model Endereco {
@@ -75,7 +77,7 @@ model Numero_de_Serie {
   ts_vende        DateTime?
   id_produto      Int
   produto         Produto           @relation(fields: [id_produto], references: [id])
-  detalhes_Compra Detalhes_Compra[]
+  Detalhes_Compra Detalhes_Compra[]
 }
 
 model Compra {
@@ -93,7 +95,7 @@ model Detalhes_Compra {
   id                 Int             @id @default(autoincrement())
   id_compra          Int
   id_produto         Int
-  id_numero_de_serie Int
+  id_numero_de_serie Int             @unique
   compra             Compra          @relation(fields: [id_compra], references: [id])
   produto            Produto         @relation(fields: [id_produto], references: [id])
   numero_de_Serie    Numero_de_Serie @relation(fields: [id_numero_de_serie], references: [id])
