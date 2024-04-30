@@ -1,0 +1,32 @@
+{
+  "name": "webacademy-t3",
+  "version": "1.0.0",
+  "description": "<a href=\"https://ufam.edu.br/\" target=\"_blank\">![marca_ufam_vetor_negativo_resized_resized (1)](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/2f4cc0ad-8ef6-497e-8a1d-57e1a06b243a)</a> &nbsp;&nbsp; <a href=\"https://icomp.ufam.edu.br/\">![icomp_resized_resized](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/7ba61e3c-886e-4db4-8c48-137b1c26da36)</a> &nbsp;&nbsp; <a href=\"https://webacademy.icomp.ufam.edu.br/\">![logo_letra_branca_resized_resized](https://github.com/AdemarCastro/webacademy-t3/assets/25653698/fa7a6956-2d7d-4f85-8583-82268c174d7d)</a> <br>",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon --watch src src/index.ts",
+    "build": "npm tsc",
+    "start:prod": "n",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.12.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "envalid": "^8.0.0",
+    "express": "^4.19.2",
+    "http-status-codes": "^2.3.0",
+    "joi": "^17.12.3",
+    "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.7",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "prisma": "^5.12.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  backend:
+    container_name: backend_loja
+    build: 
+      context: ./backend
+    volumes:
+      - ./backend/src:/app/src
+    ports:
+      - ${BACKEND_PORT}:${BACKEND_PORT}
+  fronend:
+    container_name: frontend_loja
+    build:
+      context: ./fronend
+    volumes:
+      - ./frontend/src:/app/src
+    ports:
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}
+  db:
+    container_name: db_loja
+    image: mysql:8
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - mysql_config:/etc/mysql
+      # Aqui eu poderia definir um banco de dados de teste
+      # - mysql_data_teste:/var/lib/mysql
+    ports:
+      - ${MYSQL_PORT}:3306
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+
+volumes:
+  mysql_data:
+  mysql_config:
+  # mysql_data_teste:
