@@ -12,13 +12,13 @@ export const produtoSchema = Joi.object().keys({ // Validação de Objetos
     // estoque: Joi.custom((values) => value === 0 ? 0 : 1) - Introduz uma função na validação
 });
 
-const produto = {
-    nome: "Ademar",
-    preco: 4.5,
-    estoque: 10,
-    tags: ["celular", "motorola"]
-}
+// const produto = {
+//     nome: "Ademar",
+//     preco: 4.5,
+//     estoque: 10,
+//     tags: ["celular", "motorola"]
+// }
 
-const { error, value } = produtoSchema.validate(produto);
-if (error) console.log(error.details);
-console.log(value);
+// const { error, value } = produtoSchema.validate(produto);
+// if (error) console.log(error.details);
+// console.log(value);
