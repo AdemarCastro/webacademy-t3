@@ -18,7 +18,7 @@ services:
       - ${FRONTEND_PORT}:${FRONTEND_PORT}
   db:
     container_name: db_loja
-    image: mysql:8
+    image: mysql:5.6
     volumes:
       - mysql_data:/var/lib/mysql
       - mysql_config:/etc/mysql
