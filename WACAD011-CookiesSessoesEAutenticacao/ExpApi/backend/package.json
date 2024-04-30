@@ -7,7 +7,8 @@
     "start": "npx nodemon --watch src src/index.ts",
     "build": "npm tsc",
     "start:prod": "n",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "docker exec backend_loja npx prisma migrate"
   },
   "author": "",
   "license": "ISC",
