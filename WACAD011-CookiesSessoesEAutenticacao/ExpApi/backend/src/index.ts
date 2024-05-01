@@ -10,6 +10,13 @@ dotenv.config();
 validateEnv();
 
 
+declare module "express-session" {
+    interface SessionData {
+        uid: String,
+        tipoUsuarioId: String
+    }
+}
+
 const app = express();
 const PORT = process.env.PORT || 4444;
 
