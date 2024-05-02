@@ -5,20 +5,26 @@ services:
     build: 
       context: ./backend
     volumes:
-      - ./backend/src:/app/src
+      # Uma forma de evitar ficar tendo de apagar imagens manualmente
+      # é a de deixar o repositório copiar tudo, mas isso não serve
+      # para produção
+      # - ./backend/src:/app/src
+      - ./backend:/app
+      
     ports:
       - ${BACKEND_PORT}:${BACKEND_PORT}
-  fronend:
+  frontend:
     container_name: frontend_loja
     build:
       context: ./frontend
     volumes:
-      - ./frontend/src:/app/src
+      # - ./frontend/src:/app/src
+      - ./frontend:/app
     ports:
       - ${FRONTEND_PORT}:${FRONTEND_PORT}
   db:
     container_name: db_loja
-    image: mysql:5.6
+    image: mysql:8
     volumes:
       - mysql_data:/var/lib/mysql
       - mysql_config:/etc/mysql
