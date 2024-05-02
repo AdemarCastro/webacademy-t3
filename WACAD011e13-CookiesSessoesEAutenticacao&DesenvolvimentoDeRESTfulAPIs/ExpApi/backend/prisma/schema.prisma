@@ -24,6 +24,7 @@ model Usuario {
   id            String      @id @default(uuid()) @db.Char(36)
   nome          String      @db.VarChar(100)
   email         String      @unique @db.VarChar(100)
+  senha         String      @db.Char(64)
   tipoUsuario   TipoUsuario @relation(fields: [tipoUsuarioId], references: [id])
   tipoUsuarioId String      @db.Char(36)
   createAt      DateTime    @default(now()) @map("created_at")

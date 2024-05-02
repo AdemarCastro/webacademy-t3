@@ -16,6 +16,7 @@ CREATE TABLE `usuarios` (
     `id` CHAR(36) NOT NULL,
     `nome` VARCHAR(100) NOT NULL,
     `email` VARCHAR(100) NOT NULL,
+    `senha` CHAR(64) NOT NULL,
     `tipoUsuarioId` CHAR(36) NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,

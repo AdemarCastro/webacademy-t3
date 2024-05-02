@@ -1,14 +1,15 @@
 import { Router } from "express";
 import validateBody from "../../middlewares/validateBody";
-import { produtoSchema } from "./usuario.schemas";
-import produtoController from "./produto.controller";
+import { UsuarioSchema } from "../usuario/usuario.schemas";
+import UsuarioController from "../usuario/usuario.controller"
+
 
 const router = Router();
 
-router.get("/", produtoController.index);
-router.post("/", validateBody(produtoSchema), usuarioController.create);
-router.get("/:id", produtoController.read);
-router.put("/:id", validateBody(produtoSchema), usuarioController.update);
-router.delete("/:id", produtoController.remove);
+router.get("/", UsuarioController.index);
+router.post("/", validateBody(UsuarioSchema), UsuarioController.create);
+router.get("/:id", UsuarioController.read);
+router.put("/:id", validateBody(UsuarioSchema), UsuarioController.update);
+router.delete("/:id", UsuarioController.remove);
 
 export default router;
