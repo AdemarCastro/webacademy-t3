@@ -42,6 +42,17 @@ Bem-vindo ao meu repositório do Curso de Capacitação em Desenvolvimento Web d
 | Processo de Desenvolvimento Ágil             | JiraTM Software                                       | 12  |
 | Desenvolvimento de Projeto Prático Guiado    |                                                      | 108 |
 
+
+## [Prefixos dos Commits](https://github.com/JuniorLima22/padroes-e-nomenclaturas-no-git#prefixos-dos-commits)
+- 📚 [DOCS]: apenas mudanças de documentação.
+- ✨ [FEAT]: Adição de uma nova feature ao projeto, componente, etc.
+- 🐞 [FIX]: Correção de um bug.
+- ⚡ [PERF]: Melhoria de performance.
+- 🛠️ [REFACTOR]: Refatoração do código que não adiciona uma funcionalidade nem corrige um bug.
+- 🎨 [STYLE]: Mudanças no código que não afetam seu significado (espaço em branco, formatação, ponto e vírgula, etc).
+- 🧪 [TEST]: Adição ou correção de testes.
+- 🚀 [IMPROVEMENT]: Melhoria em algo já existente, seja de performance, escrita, layout, etc.
+
 - Email: ademar.castro.curriculo@gmail.com
 - LinkedIn: 
 
