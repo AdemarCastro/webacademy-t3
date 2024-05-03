@@ -1,3 +1,4 @@
 import { Usuario } from "@prisma/client";
 
-export type LoginDto = Pick<>
+// Dto responsável pelo Login do Usuário
+export type LoginDto = Pick<Usuario, "email" | "senha">

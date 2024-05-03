@@ -1,12 +1,13 @@
 import { Usuario } from "@prisma/client";
 
-// Supondo que você queira selecionar apenas alguns campos específicos para CreateUsuarioDto
-export type CreateUsuarioDto = Pick<Usuario, "nome" | "email" | "senha" | "tipoUsuarioId" | "createAt" | "updateAt">;
+// Dto responsável pela Criação de um novo Usuário
+export type CreateUsuarioDto = Pick<Usuario, "nome" | "email" | "senha">;
 
-export type UpdateUsuarioDto = Pick<Usuario, "nome" | "email" | "senha" | "tipoUsuarioId" | "createAt" | "updateAt">;
+// Dto responsável pela Atualização de um Usuário
+export type UpdateUsuarioDto = Pick<Usuario, "nome" | "email" | "senha">;
 
-// E omitir o campo "senha" para UsuarioDto
+// Dto do Usuário, omiti o campo "senha" para UsuarioDto
 export type UsuarioDto = Omit<Usuario, "senha">;
 
 // Definindo os tipos de usuários
-export type TiposUsuariosDto = "client" | "admin";
+export type TipoUsuarioDto = "client" | "admin";

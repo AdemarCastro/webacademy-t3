@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { createUsuario, deleteUsuario, readUsuario, updateUsuario } from "./usuario.service";
-import { CreateUsuarioDto, UpdateUsuarioDto, TiposUsuariosDto } from "./usuario.types";
+import { CreateUsuarioDto, UpdateUsuarioDto, TipoUsuarioDto } from "./usuario.types";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 const index = async (req: Request, res: Response) => {
@@ -9,7 +9,7 @@ const index = async (req: Request, res: Response) => {
 
 const create = async (req: Request, res: Response) => {
     const usuario = req.body as CreateUsuarioDto;
-    const tipoUsuario = req.query.TiposUsuariosDto;
+    const tipoUsuario = req.query.tipoUsuario as TipoUsuarioDto;
     try {
         const createdUsuario = await createUsuario(usuario, tipoUsuario);
         res.status(StatusCodes.OK).json(createdUsuario);

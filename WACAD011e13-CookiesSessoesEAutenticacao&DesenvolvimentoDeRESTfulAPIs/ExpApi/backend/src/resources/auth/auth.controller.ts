@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
-import { createUsuario } from "../usuario/usuario.service";
+import { buscarUsuarioPorEmail, createUsuario } from "../usuario/usuario.service";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
-import { checkPreferences } from "joi";
 import { checkCredentials } from "./auth.service";
-import { TiposUsuarios } from "../tipoUsuario/tipoUsuario.constants";
 
 const signup = async (req: Request, res: Response) => {
     const usuario = req.body;
     try {
-        const novoUsuario = await createUsuario({
-            ...usuario,
-            tipoUsuarioId: TiposUsuarios.CLIENT
-        });
+        if (await buscarUsuarioPorEmail(usuario.email)) {
+            return res.
+                status(StatusCodes.BAD_REQUEST)
+                .json({ msg: 'Email informado já está sendo usado.' });
+        }
+        const novoUsuario = await createUsuario(usuario, "client");
         res.status(StatusCodes.CREATED).json(novoUsuario);
     } catch (err) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
@@ -21,8 +21,9 @@ const signup = async (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
     const credentials = req.body;
     try {
-        const usuario = checkCredentials(credentials)
+        const usuario = await checkCredentials(credentials)
         if (!usuario) return res.status(StatusCodes.UNAUTHORIZED).json(ReasonPhrases.UNAUTHORIZED)
+        
         req.session.uid = usuario.id;
         req.session.tipoUsuarioId = usuario.tipoUsuarioId;
         res.status(StatusCodes.OK).json(usuario)
