@@ -1,4 +1,8 @@
-export default function ItemCarrinho() {
+interface IItemCarrinhoProps {
+    carrinho: Carrinho;
+}
+
+export default function ItemCarrinho({ carrinho }: Carrinho) {
     const valorTotalProduto = (
         precoUnitario: number,
         quantidade: number
@@ -6,7 +10,7 @@ export default function ItemCarrinho() {
 
     return <>
         <tr key="1">
-            <td>Notebook 1</td>
+            <td>{carrinho.nome}</td>
             <td>R$ {(1500).toFixed(2)}</td>
             <td>2</td>
 

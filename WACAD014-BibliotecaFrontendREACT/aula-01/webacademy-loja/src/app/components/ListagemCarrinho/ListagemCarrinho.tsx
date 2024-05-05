@@ -1,6 +1,10 @@
 import ItemCarrinho from "../ItemCarrinho/ItemCarrinho";
 
-export default function ListagemCarrinho() {
+interface IListagemCarrinhoProps {
+  itensCarrinho: Carrinho[];
+}
+
+export default function ListagemCarrinho({ itensCarrinho }: Carrinho) {
     return <>
         <div className="card mb-4">
             <div className="row card-body">
@@ -19,11 +23,16 @@ export default function ListagemCarrinho() {
                     </tr>
                   </thead>
                   <tbody>
-                    <ItemCarrinho></ItemCarrinho>
-                    <ItemCarrinho></ItemCarrinho>
-                    <ItemCarrinho></ItemCarrinho>
-                    <ItemCarrinho></ItemCarrinho>
-                    <ItemCarrinho></ItemCarrinho>
+                    {itensCarrinho.map((carrinho) => (
+                      (
+                        <ItemCarrinho
+                          key={carrinho.id}
+                          nome={carrinho.nome}
+                          preco={carrinho.preco}
+                          quantidade={carrinho.quantidade}
+                        />
+                      )
+                    ))}
                   </tbody>
                 </table>
               </div>

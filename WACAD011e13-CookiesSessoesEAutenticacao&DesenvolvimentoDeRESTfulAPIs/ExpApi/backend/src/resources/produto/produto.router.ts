@@ -3,6 +3,7 @@ import validateBody from "../../middlewares/validateBody";
 import { produtoSchema } from "./produto.schemas";
 import produtoController from "./produto.controller";
 import { isAdmin } from "../../middlewares/isAdmin";
+import { isAuth } from "../../middlewares/isAuth";
 
 const router = Router();
 

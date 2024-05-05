@@ -22,11 +22,11 @@ const create = async (req: Request, res: Response) => {
             const novoProduto = await createProduto(produto);
             res.status(StatusCodes.CREATED).json(novoProduto);
         } else {
-            res.status(StatusCodes.CONFLICT).json(ReasonPhrases.CONFLICT)
+            res.status(StatusCodes.CONFLICT).json({ error: "Produto já existe"})
         }
     } catch(err) {
         console.log(err);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Erro interno do servidor'});
     }
 };
 
@@ -37,7 +37,7 @@ const read = async (req: Request, res: Response) => {
         if (!produto) return res.status(StatusCodes.NOT_FOUND).json(ReasonPhrases.NOT_FOUND);
         res.status(StatusCodes.OK).json(produto);
     } catch(err) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Erro interno do servidor'});
     }
 };
 
@@ -53,7 +53,7 @@ const update = async (req: Request, res: Response) => {
             res.status(StatusCodes.CONFLICT).json(ReasonPhrases.CONFLICT);
         }
     } catch(err) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Erro interno do servidor'});
     }
 };
 
@@ -64,7 +64,7 @@ const remove = async (req: Request, res: Response) => {
         const deletedProduto = await deleteProduto(id);
         res.status(StatusCodes.NO_CONTENT).json();
     } catch(err) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Erro interno do servidor'});
     }
 };
 
