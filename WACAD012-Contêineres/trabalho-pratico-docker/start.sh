@@ -1,5 +1,21 @@
 #!/bin/sh
 
+docker compose stop
+
+# Função para verificar e encerrar processos nas portas especificadas
+check_and_kill_processes() {
+    for PORTA in 3306 8080 4444 8000; do
+        # Verifica se há algum processo rodando na porta atual
+        if sudo lsof -t -i:$PORTA > /dev/null; then
+            # Se houver, executa o comando kill para encerrá-lo
+            echo "Encerrando processo rodando na porta $PORTA..."
+            sudo kill $(sudo lsof -t -i:$PORTA)
+        fi
+    done
+}
+
+check_and_kill_processes
+
 # Inicia os contêineres em segundo plano 🚀
 docker compose up -d
 
@@ -18,10 +34,9 @@ sleep 10
 # Muda para o diretório onde os arquivos Prisma estão localizados
 cd webacademy-livros-backend-main
 
-# Executa o script de migração 📦
 echo "Executando script de migração... 🔄"
 sh migrate.sh
 
 cd ..
 
-echo "Script de migração concluído. 🎉"
+echo "Script de inicialização concluído. 🎉"

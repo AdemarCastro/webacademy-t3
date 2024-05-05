@@ -2,7 +2,7 @@ version: ''
 services:
   db:
     container_name: dblivros
-    image: mysql:latest
+    image: mysql:8
     volumes:
       - mysql_data:/var/lib/mysql
       - mysql_config:/etc/mysql
@@ -25,16 +25,21 @@ services:
     container_name: backendlivros
     build:
       context: ./webacademy-livros-backend-main
-    # volumes:
-    #   - ./webacademy-livros-backend-main:/app
+      args:
+        - VERSION=v1
+    volumes:
+      - ./webacademy-livros-backend-main/src:/dist
+      - ./webacademy-livros-backend-main/prisma/migrations:/prisma/migrations
     ports:
       - ${BACKEND_PORT}:${BACKEND_PORT}
   frontend:
     container_name: frontendlivros
     build:
       context: ./webacademy-livros-frontend-main
+      args:
+        - VERSION=v1
     # volumes:
-    #   - ./webacademy-livros-frontend-main:/app
+      # - ./webacademy-livros-frontend-main/src:/dist
     ports:
       - ${FRONTEND_PORT}:80
 volumes:

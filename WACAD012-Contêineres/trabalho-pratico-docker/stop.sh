@@ -1,3 +1,4 @@
 #!/bin/sh
 
-docker compose down
+# Derrubando os serviços do Docker Compose
+docker compose stop
