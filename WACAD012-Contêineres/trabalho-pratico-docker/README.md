@@ -15,7 +15,7 @@ O WebAcademy Livros é uma aplicação de demonstração que permite aos usuári
 
 ## Slides com os Scripts para executar o Trabalho Prático Docker
 
-(Link para os Slides)[https://docs.google.com/presentation/d/1_wcIT2owcHSPXqiP569kdlZS5eqD0G1m/edit?usp=sharing&ouid=113499583742057325047&rtpof=true&sd=true]
+[Link para os Slides](https://docs.google.com/presentation/d/1_wcIT2owcHSPXqiP569kdlZS5eqD0G1m/edit?usp=sharing&ouid=113499583742057325047&rtpof=true&sd=true)
 
 ## Licença
 
