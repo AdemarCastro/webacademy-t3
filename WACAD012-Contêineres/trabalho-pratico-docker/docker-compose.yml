@@ -1,6 +1,6 @@
 version: ''
 services:
-  db:
+  dblivros:
     container_name: dblivros
     image: mysql:8
     volumes:
