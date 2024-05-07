@@ -5,7 +5,7 @@ import { StatusCodes } from "http-status-codes";
 export const isAdmin = async (req: Request, res: Response, next: NextFunction ) => {
     console.log(`Verificando se o usuário ${req.session.uid} é um admin`);
     try {
-        if (req.session.uid && (await checkCredentialsAdmin(req.session.uid.toString()))) next();
+        if (req.session.uid && (await checkCredentialsAdmin(req.session.uid))) next();
         else res.status(StatusCodes.FORBIDDEN).json({ msg: "Não autenticado como Admin" });
     } catch (error) {
         console.error("Erro ao verificar credenciais do admin:", error);

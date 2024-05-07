@@ -3,10 +3,20 @@ import { buscarUsuarioPorEmail, createUsuario } from "../usuario/usuario.service
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { checkCredentialsAdmin, checkCredentialsAuth } from "./auth.service";
 import { TiposUsuarios } from "../tipoUsuario/tipoUsuario.constants";
-import { SignDto } from "./auth.types";
+import { LoginDto, SignDto } from "./auth.types";
 
 const signup = async (req: Request, res: Response) => {
     const usuario = req.body as SignDto;
+    /*
+    #swagger.summary = "Registro de novos usuários."
+    #swagger.parameters['body'] = {
+    in: 'body',
+    schema: { $ref: '#/definitions/SignDto' }
+    }
+    #swagger.responses[201] = {
+    schema: { $ref: '#/definitions/UsuarioDto'}
+    }
+    */
     try {
         if (await buscarUsuarioPorEmail(usuario.email)) {
             return res.
@@ -24,13 +34,24 @@ const signup = async (req: Request, res: Response) => {
 };
 
 const login = async (req: Request, res: Response) => {
-    const credentials = req.body;
+    const credentials = req.body as LoginDto;
+    /*
+    #swagger.summary = "Autentificação de usuários."
+    #swagger.parameters['body'] = {
+        in: 'body',
+        schema: { $ref: '#/definitions/LoginDto' }
+    }
+    #swagger.responses[200] = {
+    schema: { $ref: '#/definitions/'}
+    }
+    */
     try {
         // Checa se o usuário existe no sistema
         const usuario = await checkCredentialsAuth(credentials)
         if (!usuario) return res.status(StatusCodes.UNAUTHORIZED).json({ msg: "Email ou senha incorretos"});
         
         // Determina se o usuário é um Administrador
+        req.session.uid = usuario.id;
         const isAdmin = await checkCredentialsAdmin(usuario.id);
 
         res.status(StatusCodes.OK).json({ msg: "Usuário autenticado", isAdmin})
@@ -40,6 +61,12 @@ const login = async (req: Request, res: Response) => {
 };
 
 const logout = async (req: Request, res: Response) => {
+    /*
+    #swagger.summary = "Logout."
+    #swagger.responses[200] = {
+        schema: { $ref: '#/definitions/'}
+    }  
+    */
     if (req.session.uid) {
         req.session.destroy((err) => {
             if (err) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);

@@ -10,7 +10,6 @@ import validateEnv from "./utils/validateEnv";
 import router from "./router"; // index
 import setLangCookie from "./middlewares/setLangCookie";
 import { ProdutoCarrinho } from "./resources/compra/compra.types";
-import { isAdmin } from "./middlewares/isAdmin";
 
 dotenv.config();
 validateEnv();
@@ -29,8 +28,8 @@ const PORT = process.env.PORT ?? 4444;
 app.use(session({
     genid: () => uuidv4(),
     secret: "Hi9Cf#mK98", // Serve para identificar se o genid foi gerado por este ambiente
-    resave: true, // O usuário perde a sessão 2h após fazer a conexão
-    saveUninitialized: true // O usuário vai poder armazenar itens no carrinho de compra, mesmo não estando logado, basta deixar true aqui
+    resave: false, // O usuário perde a sessão 2h após fazer a conexão
+    saveUninitialized: false // O usuário vai poder armazenar itens no carrinho de compra, mesmo não estando logado, basta deixar true aqui
 }));
 
 app.use(cookieParser()); // Precisa vir antes do setLangCookie
