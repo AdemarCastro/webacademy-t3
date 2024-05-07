@@ -7,7 +7,8 @@
     "start": "npx nodemon --watch src src/index.ts",
     "build": "npm tsc",
     "start:prod": "node build/index.js",
-    "migrate": "docker exec -it backend_loja npx prisma migrate dev"
+    "migrate": "docker exec -it backend_loja npx prisma migrate dev",
+    "swagger": "ts-node src/swagger.ts"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,7 @@
     "http-status-codes": "^2.3.0",
     "joi": "^17.12.3",
     "nodemon": "^3.1.0",
+    "swagger-ui-express": "^5.0.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
@@ -30,8 +32,10 @@
     "@types/express": "^4.17.21",
     "@types/express-session": "^1.18.0",
     "@types/node": "^20.12.7",
+    "@types/swagger-ui-express": "^4.1.6",
     "@types/uuid": "^9.0.8",
     "prisma": "^5.12.1",
+    "swagger-autogen": "^2.23.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },

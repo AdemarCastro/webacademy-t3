@@ -6,10 +6,28 @@ import authRouter from '../resources/auth/auth.router';
 
 const router = Router();
 
-router.use('/', authRouter);
-router.use("/produto", produtoRouter); // Quando for digitado o /produto será direcionado para o produtoRouter
-router.use("/language", languageRouter); // Quando for digitado o /produto será direcionado para o produtoRouter
-router.use("/usuario", usuarioRouter);
+router.use(
+    "/auth",
+    // #swagger.tags = ['Auth']
+    authRouter
+);
 
+router.use(
+    "/produto",
+    // #swagger.tags = ['Produto']
+    produtoRouter
+);
+
+router.use(
+    "/language",
+    // #swagger.tags = ['Language']
+    languageRouter
+);
+
+router.use(
+    "/usuario",
+    // #swagger.tags = ['Usuario']
+    usuarioRouter
+);
 
 export default router;
