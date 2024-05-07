@@ -11,8 +11,11 @@
     "http"
   ],
   "paths": {
-    "/v1/": {
+    "/v1/auth/": {
       "post": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "parameters": [
           {
@@ -35,6 +38,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -43,6 +49,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -53,6 +62,10 @@
     },
     "/v1/produto/": {
       "get": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Listagem de produtos.",
         "description": "",
         "parameters": [
           {
@@ -67,87 +80,108 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ProdutosArray"
+            },
+            "description": "OK"
           }
         }
       },
       "post": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Adiciona um novo produto na base.",
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "nome": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/CreateProduto"
             }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Produto"
+            },
+            "description": "OK"
           }
         }
       }
     },
     "/v1/produto/{id}": {
       "get": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Recupera um produto específico.",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID do produto"
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Produto"
+            },
+            "description": "OK"
           }
         }
       },
       "put": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Altera os dados de um produto.",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID do produto"
           },
           {
             "name": "body",
             "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "nome": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/UpdateProdutoDto"
             }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Produto"
+            },
+            "description": "OK"
           }
         }
       },
       "delete": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Apaga um produto.",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID do produto"
           }
         ],
         "responses": {
@@ -159,6 +193,9 @@
     },
     "/v1/language/": {
       "post": {
+        "tags": [
+          "Language"
+        ],
         "description": "",
         "parameters": [
           {
@@ -183,6 +220,9 @@
     },
     "/v1/usuario/": {
       "get": {
+        "tags": [
+          "Usuario"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -191,6 +231,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Usuario"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -201,6 +244,9 @@
     },
     "/v1/usuario/{id}": {
       "get": {
+        "tags": [
+          "Usuario"
+        ],
         "description": "",
         "parameters": [
           {
@@ -217,6 +263,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Usuario"
+        ],
         "description": "",
         "parameters": [
           {
@@ -233,6 +282,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Usuario"
+        ],
         "description": "",
         "parameters": [
           {
@@ -246,6 +298,54 @@
           "default": {
             "description": ""
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateProdutoDto": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "example": "Martelo"
+        },
+        "preco": {
+          "type": "number",
+          "example": 29
+        },
+        "estoque": {
+          "type": "number",
+          "example": 10
+        }
+      }
+    },
+    "Produto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "8a2053de-5d92-4c43-97c0-c9b2b0d56703"
+        },
+        "nome": {
+          "type": "string",
+          "example": "Bacon"
+        },
+        "preco": {
+          "type": "number",
+          "example": 261
+        },
+        "estoque": {
+          "type": "number",
+          "example": 1
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2023-11-07T19:27:15.645Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2023-11-07T19:27:15.645Z"
         }
       }
     }
