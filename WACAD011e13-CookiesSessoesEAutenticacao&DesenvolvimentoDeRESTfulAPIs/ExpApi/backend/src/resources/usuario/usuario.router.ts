@@ -1,5 +1,4 @@
 import { Router } from "express";
-import validateBody from "../../middlewares/validateBody";
 import UsuarioController from "../usuario/usuario.controller"
 
 

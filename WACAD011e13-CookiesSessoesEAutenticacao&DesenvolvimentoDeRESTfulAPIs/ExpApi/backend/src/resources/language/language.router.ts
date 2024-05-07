@@ -1,5 +1,4 @@
 import { Router } from "express";
-import languageRouter from "./language.router";
 import languageController from "./language.controller";
 import validateBody from "../../middlewares/validateBody";
 import { languageSchema } from "./language.schemas";

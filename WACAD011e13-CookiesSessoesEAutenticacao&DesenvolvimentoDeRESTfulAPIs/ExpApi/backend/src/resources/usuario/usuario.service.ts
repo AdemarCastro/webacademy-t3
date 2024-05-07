@@ -1,13 +1,12 @@
 import { TiposUsuarios } from "./../tipoUsuario/tipoUsuario.constants";
 import { PrismaClient } from "@prisma/client";
-import { CreateUsuarioDto, TipoUsuarioDto, UsuarioDto } from "./usuario.types";
+import { CreateUsuarioDto, TipoUsuarioDto, UpdateUsuarioDto, UsuarioDto } from "./usuario.types";
 import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 export const createUsuario = async (
     usuario: CreateUsuarioDto,
-    tipoUsuario: TipoUsuarioDto
 ): Promise<UsuarioDto> => {
     const rounds = parseInt(process.env.BCRYPT_ROUNDS!);
     const salt = await bcrypt.genSalt(rounds); // Tornar a coisa mais demorada, para que o usuŕio não fique colocando uma senha atrás da outra
@@ -16,39 +15,47 @@ export const createUsuario = async (
     const novoUsuario = await prisma.usuario.create({
         data: {
             ...usuario,
-            senha: senhaHashed,
-            tipoUsuarioId:
-                tipoUsuario === "admin" ? TiposUsuarios.ADMIN : TiposUsuarios.CLIENT,
-        },
-        select: {
-            id: true,
-            nome: true,
-            email: true,
-            tipoUsuarioId: true,
-            createAt: true,
-            updateAt: true,
+            senha: senhaHashed
         },
     });
 
-    return novoUsuario;
+    return {
+        id: novoUsuario.id,
+        tipoUsuarioId: novoUsuario.tipoUsuarioId,
+        nome: novoUsuario.nome,
+        email: novoUsuario.email,
+        createdAt: novoUsuario.createdAt,
+        updatedAt: novoUsuario.updatedAt,
+    };
 };
 
 // Função para listar usuários
 export const listUsuarios = async (
-    skip?: number,
-    take?: number
+    tipo?: TiposUsuarios
 ): Promise<UsuarioDto[]> => {
-    return await prisma.usuario.findMany({
+    if(!tipo) {
+        return await prisma.usuario.findMany({
+            select: {
+                id: true,
+                nome: true,
+                email: true,
+                tipoUsuarioId: true,
+                createdAt: true,
+                updatedAt: true,
+            },
+        });
+    }
+
+    return prisma.usuario.findMany({
+        where: { tipoUsuarioId: tipo },
         select: {
             id: true,
             nome: true,
             email: true,
             tipoUsuarioId: true,
-            createAt: true,
-            updateAt: true,
+            createdAt: true,
+            updatedAt: true,
         },
-        skip,
-        take,
     });
 };
 
@@ -61,8 +68,8 @@ export const readUsuario = async (id: string): Promise<UsuarioDto | null> => {
             nome: true,
             email: true,
             tipoUsuarioId: true,
-            createAt: true,
-            updateAt: true,
+            createdAt: true,
+            updatedAt: true,
         },
     });
 };
@@ -70,7 +77,7 @@ export const readUsuario = async (id: string): Promise<UsuarioDto | null> => {
 // Função para atualizar um usuário
 export const updateUsuario = async (
     id: string,
-    usuario: Partial<CreateUsuarioDto>
+    usuario: UpdateUsuarioDto
 ): Promise<UsuarioDto | null> => {
     return await prisma.usuario.update({
         where: { id },
@@ -80,8 +87,8 @@ export const updateUsuario = async (
             nome: true,
             email: true,
             tipoUsuarioId: true,
-            createAt: true,
-            updateAt: true,
+            createdAt: true,
+            updatedAt: true,
         },
     });
 };
@@ -95,26 +102,23 @@ export const deleteUsuario = async (id: string): Promise<UsuarioDto> => {
             nome: true,
             email: true,
             tipoUsuarioId: true,
-            createAt: true,
-            updateAt: true,
+            createdAt: true,
+            updatedAt: true,
         },
     });
 };
 
 // Função para verificar se um usuário com o e-mail fornecido já existe
-export const buscarUsuarioPorEmail = async (email: string): Promise<boolean> => {
-    const usuarioExistente = await prisma.usuario.findUnique({
+export const buscarUsuarioPorEmail = async (email: string): Promise<UsuarioDto | null> => {
+    return await prisma.usuario.findUnique({
         where: { email },
         select: {
             id: true,
             nome: true,
             email: true,
             tipoUsuarioId: true,
-            createAt: true,
-            updateAt: true,
+            createdAt: true,
+            updatedAt: true,
         },
     });
-
-    // Retorna true se o usuário existir, caso contrário false
-    return !!usuarioExistente;
-}
+};

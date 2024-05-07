@@ -1,17 +1,21 @@
 import { Request, Response } from "express";
-import { createUsuario, deleteUsuario, readUsuario, updateUsuario } from "./usuario.service";
+import { createUsuario, deleteUsuario, listUsuarios, readUsuario, updateUsuario } from "./usuario.service";
 import { CreateUsuarioDto, UpdateUsuarioDto, TipoUsuarioDto } from "./usuario.types";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 const index = async (req: Request, res: Response) => {
-
+    try {
+        const usuarios = await listUsuarios();
+        res.status(StatusCodes.OK).json(usuarios);
+    } catch (err) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: "Erro ao listar usuários" });
+    }
 };
 
 const create = async (req: Request, res: Response) => {
     const usuario = req.body as CreateUsuarioDto;
-    const tipoUsuario = req.query.tipoUsuario as TipoUsuarioDto;
     try {
-        const createdUsuario = await createUsuario(usuario, tipoUsuario);
+        const createdUsuario = await createUsuario(usuario);
         res.status(StatusCodes.OK).json(createdUsuario);
     } catch (err) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);

@@ -1,8 +1,15 @@
 import { Request, Response, NextFunction } from "express";
-import { ReasonPhrases, StatusCodes } from "http-status-codes";
-import { TiposUsuarios } from "../resources/tipoUsuario/tipoUsuario.constants";
+import { checkCredentialsAdmin } from "../resources/auth/auth.service";
+import { StatusCodes } from "http-status-codes";
 
-export const isAdmin = (req: Request, res: Response, next: NextFunction ) => {
-    if (req.session.tipoUsuarioId === TiposUsuarios.ADMIN) next();
-    res.status(StatusCodes.FORBIDDEN).json(ReasonPhrases.FORBIDDEN);
+export const isAdmin = async (req: Request, res: Response, next: NextFunction ) => {
+    console.log(`Verificando se o usuário ${req.session.uid} é um admin`);
+    try {
+        if (req.session.uid && (await checkCredentialsAdmin(req.session.uid.toString()))) next();
+        else res.status(StatusCodes.FORBIDDEN).json({ msg: "Não autenticado como Admin" });
+    } catch (error) {
+        console.error("Erro ao verificar credenciais do admin:", error);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: "Erro interno" });
+    }
+      
 };
