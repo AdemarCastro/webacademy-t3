@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar/NavBar";
+import BootstrapClient from "../../BootstrapClient";
+import usePathname from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
+const pathname = usePathname;
+console.log(pathname);
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,8 +22,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
-        <NavBar></NavBar>
+        {pathname ? (<NavBar />) : null}
         {children}
+        <BootstrapClient />
       </body>
     </html>
   );

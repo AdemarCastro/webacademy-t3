@@ -8,17 +8,25 @@ import ResumoCarrinho from "./components/ResumoCarrinho/ResumoCarrinho";
 import { mockProdutos } from "./mocks/produtos";
 
 export default function Produtos() {
-  const produtos = mockProdutos;
+  // const produtos = mockProdutos;
+
+  const [produtos, setProdutos] = React.useState<Produto[] | null>(null);
   const [modal, setModalAberto] = useState<boolean>(true);
+
+  React.useEffect(() => {    
+    fetch("https://ranekapi.origamid.dev/json/api/produto")
+      .then((res) => res.json())
+      .then((json) => setProdutos(json));
+  }, []);
 
   return (
     <>
       <main>
         <div className="container p-5">
           <ResumoCarrinho precoTotal={0} quantidadeItensTotal={0}/>
-          <ListagemProduto produtos={produtos} />
+          <ListagemProduto produtos={produtos}/>
 
-          <Modal modal={modal} setModalAberto={setModalAberto} /> // Controlar o estado
+          {/* <Modal modal={modal} setModalAberto={setModalAberto} /> // Controlar o estado */}
         </div>
       </main>
     </>
