@@ -1,10 +1,14 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface ICardProdutoProps {
   produto: Produto;
 }
 
 export default function CardProduto({ produto }: ICardProdutoProps) {
+    const router = useRouter();
+    const nome = "notebook"
+
     return <div className="col">
     <div className="card shadow-sm h-100">
       <Image
@@ -20,6 +24,13 @@ export default function CardProduto({ produto }: ICardProdutoProps) {
         <p className="card-text text-secondary">R$ {produto.preco}</p>
         <button className="btn btn-dark d-block w-100" type="button">
           Adicionar no carrinho
+        </button>
+        <button 
+          className="btn btn-light d-block w-100 mt-2" 
+          type="button"
+          onClick={() => router.push(`/produto/${nome}`)}
+          >
+          Ver detalhes
         </button>
       </div>
     </div>

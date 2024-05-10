@@ -10,8 +10,8 @@ export default function Carrinho() {
     <>
       <main>
         <div className="container p-5">
-          <ListagemCarrinho></ListagemCarrinho>
-          <ResumoCarrinho></ResumoCarrinho>
+          <ListagemCarrinho itensCarrinho={[]}></ListagemCarrinho>
+          <ResumoCarrinho quantidadeItensTotal={0} precoTotal={0}></ResumoCarrinho>
         </div>
       </main>
     </>
