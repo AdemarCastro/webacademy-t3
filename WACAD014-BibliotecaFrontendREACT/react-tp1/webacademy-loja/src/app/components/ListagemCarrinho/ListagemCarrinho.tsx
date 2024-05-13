@@ -2,9 +2,10 @@ import ItemCarrinho from "../ItemCarrinho/ItemCarrinho";
 
 interface IListagemCarrinhoProps {
   itensCarrinho: Carrinho[] | null;
+  removerItemDoCarrinho: (id: string) => void;
 }
 
-export default function ListagemCarrinho({ itensCarrinho }: IListagemCarrinhoProps) {
+export default function ListagemCarrinho({ itensCarrinho, removerItemDoCarrinho }: IListagemCarrinhoProps) {
     return <>
         <div className="card mb-4">
             <div className="row card-body">
@@ -28,6 +29,7 @@ export default function ListagemCarrinho({ itensCarrinho }: IListagemCarrinhoPro
                         <ItemCarrinho
                           key={carrinho.itensCarrinho[0].id}
                           carrinho={carrinho}
+                          removerItemDoCarrinho={removerItemDoCarrinho}
                         />
                       ))
                     : null}

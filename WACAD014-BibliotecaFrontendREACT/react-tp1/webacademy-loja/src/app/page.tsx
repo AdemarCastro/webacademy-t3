@@ -1,8 +1,6 @@
 "use client";
-import NavBar from "./components/NavBar/NavBar";
 
-import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import ListagemProduto from "./components/ListagemProduto/ListagemProduto";
 import ResumoCarrinho from "./components/ResumoCarrinho/ResumoCarrinho";
 import { mockProdutos } from "./mocks/produtos";
