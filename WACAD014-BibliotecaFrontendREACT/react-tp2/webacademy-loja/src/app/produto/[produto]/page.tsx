@@ -1,20 +1,25 @@
 "use client";
 
+import { useDetalhesProduto } from "@/app/hooks/useDetalhesProdutos";
 import { useParams } from "next/dist/client/components/navigation";
 import Image from "next/image";
 import React from "react";
 
 export default function Produto() {
     let produtoId = useParams<{produto: string}>();
-    const [produto, setProduto] = React.useState<Produto | null>(null);
+    const { produto, isLoading, isError, error } = useDetalhesProduto(produtoId.produto);
+    // const [produto, setProduto] = React.useState<Produto | null>(null);
 
-    React.useEffect(() => {
-      fetch("https://ranekapi.origamid.dev/json/api/produto/" + produtoId.produto)
-        .then((res) => res.json())
-        .then((json) => setProduto(json));
-    }, []);
+    // React.useEffect(() => {
+    //   fetch("https://ranekapi.origamid.dev/json/api/produto/" + produtoId.produto)
+    //     .then((res) => res.json())
+    //     .then((json) => setProduto(json));
+    // }, []);
 
     console.log(produtoId.produto)
+
+    if (isLoading) return <h5 className="card-title mb-4 fw-bold">Carregando...</h5>;
+    if (isError || error) return <h5 className="card-title mb-4 fw-bold">Erro ao carregar detalhes do produto.</h5>;
 
     let imageSrc = produto?.fotos ? produto.fotos[0].src : "";
     let imageTitulo = produto?.fotos ? produto.fotos[0].titulo : "";
