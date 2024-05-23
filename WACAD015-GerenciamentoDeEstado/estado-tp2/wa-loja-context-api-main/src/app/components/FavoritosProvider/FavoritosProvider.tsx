@@ -1,7 +1,7 @@
 "use client";
 
+import { createContext, useContext, useState, ReactNode } from 'react';
 import { Produto } from '@/app/types/produto';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface FavoritosContextProps {
   favoritos: Produto[];
@@ -23,6 +23,15 @@ const FavoritosProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
-const useFavoritos = () => useContext(FavoritosContext);
 
-export { FavoritosProvider, useFavoritos, FavoritosContext };
+const useProdutosFavoritos = () => {
+  const { favoritos, setFavoritos } = useContext(FavoritosContext);
+  return { favoritos, setFavoritos };
+};
+
+const useVerificaProdutoFavorito = (id: string) => {
+  const { favoritos } = useContext(FavoritosContext);
+  return favoritos.some(produto => produto.id === id);
+};
+
+export { FavoritosProvider, useProdutosFavoritos, useVerificaProdutoFavorito };

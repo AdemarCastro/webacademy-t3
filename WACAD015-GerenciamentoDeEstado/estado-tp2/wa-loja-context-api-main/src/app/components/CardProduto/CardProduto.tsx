@@ -1,20 +1,23 @@
+// CardProduto.tsx
 import React from 'react';
 import Image from "next/image";
 import { Produto } from '@/app/types/produto';
-import { useFavoritos } from '../FavoritosProvider/FavoritosProvider';
+import { useProdutosFavoritos, useVerificaProdutoFavorito } from '../FavoritosProvider/FavoritosProvider';
 
 interface CardProdutoProps {
   produto: Produto;
 }
 
 export default function CardProduto({ produto }: CardProdutoProps) {
-  const { favoritos, setFavoritos } = useFavoritos();
+  const { favoritos, setFavoritos } = useProdutosFavoritos();
+  const ehFavorito = useVerificaProdutoFavorito(produto.id);
 
   const adicionarAosFavoritos = (produto: Produto) => {
-    setFavoritos((prevFavoritos: Produto[]) => [...prevFavoritos, produto]);
+    console.log('Adicionando ao favoritos:', produto); // Log para depuração
+    setFavoritos((favoritos) => [...favoritos, produto]);
+    console.log("Lista de favoritos atual: " + favoritos);
   };
-
-  const ehFavorito = favoritos.some((item) => item.id === produto.id);
+  
 
   return (
     <div className="col">
