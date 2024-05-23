@@ -1,8 +1,7 @@
-// ResumoFavoritos.tsx
-
 import React from 'react';
 import CardProduto from "../CardProduto/CardProduto";
-import { useFavoritos } from '../../page'; // Importa o hook useFavoritos do arquivo page.tsx
+import { useFavoritos } from '../FavoritosProvider/FavoritosProvider';
+import { Produto } from '@/app/types/produto';
 
 export default function ResumoFavoritos() {
   const { favoritos } = useFavoritos();
@@ -12,7 +11,7 @@ export default function ResumoFavoritos() {
       <h5 className="mb-4">Seus produtos favoritos:</h5>
 
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
-        {favoritos.map((produto) => (
+        {favoritos.map((produto: Produto) => (
           <CardProduto
             key={produto.id}
             produto={produto}

@@ -1,3 +1,5 @@
+import { Produto } from "../types/produto";
+
 export const mockProdutos: Produto[] = [
   {
     id: "notebook-3",

@@ -1,3 +1,4 @@
+import { Produto } from "@/app/types/produto";
 import ItemFavorito from "../ItemFavorito/ItemFavorito";
 
 interface IListagemFavoritosProps {

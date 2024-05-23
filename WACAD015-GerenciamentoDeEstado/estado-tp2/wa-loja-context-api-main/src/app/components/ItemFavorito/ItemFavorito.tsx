@@ -1,3 +1,5 @@
+import { Produto } from "@/app/types/produto";
+
 interface IItemFavoritoProps {
   itemFavorito: Produto;
   setFavoritos: React.Dispatch<React.SetStateAction<Produto[]>>;

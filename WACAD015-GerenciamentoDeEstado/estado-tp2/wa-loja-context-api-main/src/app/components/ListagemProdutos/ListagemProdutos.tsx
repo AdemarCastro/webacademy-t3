@@ -1,7 +1,8 @@
 import React from 'react';
 import CardProduto from "../CardProduto/CardProduto";
 import ResumoFavoritos from "../ResumoFavoritos/ResumoFavoritos";
-import { useFavoritos } from '../../page';
+import { Produto } from '@/app/types/produto';
+import { useFavoritos } from '../FavoritosProvider/FavoritosProvider';
 
 interface IListagemProdutos {
   produtos: Produto[];

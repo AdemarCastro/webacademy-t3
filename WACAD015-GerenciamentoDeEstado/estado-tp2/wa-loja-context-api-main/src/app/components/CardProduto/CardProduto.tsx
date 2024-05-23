@@ -1,20 +1,20 @@
 import React from 'react';
 import Image from "next/image";
-// Importe o tipo Produto aqui se ainda não estiver importado
-import { useFavoritos } from '../../page';
+import { Produto } from '@/app/types/produto';
+import { useFavoritos } from '../FavoritosProvider/FavoritosProvider';
 
 interface CardProdutoProps {
-  produto: Produto; // Verifique se o tipo Produto está correto aqui
+  produto: Produto;
 }
 
 export default function CardProduto({ produto }: CardProdutoProps) {
-  const { favoritos, setFavoritos } = useFavoritos(); // Garanta que favoritos seja um array de Produto
+  const { favoritos, setFavoritos } = useFavoritos();
 
   const adicionarAosFavoritos = (produto: Produto) => {
-    setFavoritos(prevFavoritos => [...prevFavoritos, produto]);
+    setFavoritos((prevFavoritos: Produto[]) => [...prevFavoritos, produto]);
   };
 
-  const ehFavorito = favoritos.some((item) => item.id === produto.id); // Certifique-se de que favoritos contém objetos do tipo Produto
+  const ehFavorito = favoritos.some((item) => item.id === produto.id);
 
   return (
     <div className="col">
@@ -31,12 +31,12 @@ export default function CardProduto({ produto }: CardProdutoProps) {
           <h5 className="card-title">{produto.nome}</h5>
           <p className="card-text text-secondary">R$ {produto.preco}</p>
           <button
-            className="btn btn-success d-block w-100 "
+            className="btn btn-success d-block w-100"
             type="button"
-            onClick={() => adicionarAosFavoritos(produto)} // Esta linha parece correta
+            onClick={() => adicionarAosFavoritos(produto)}
             disabled={ehFavorito}
           >
-            {ehFavorito? "Adicionado" : "Adicionar aos favoritos"}
+            {ehFavorito ? "Adicionado" : "Adicionar aos favoritos"}
           </button>
         </div>
       </div>
