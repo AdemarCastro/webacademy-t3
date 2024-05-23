@@ -1,10 +1,10 @@
-import React from 'react';
-import CardProduto from "../CardProduto/CardProduto";
-import { useFavoritos } from '../FavoritosProvider/FavoritosProvider';
+import React, { useContext } from 'react';
+import CardProduto from '../CardProduto/CardProduto';
+import { FavoritosContext } from '../FavoritosProvider/FavoritosProvider';
 import { Produto } from '@/app/types/produto';
 
 export default function ResumoFavoritos() {
-  const { favoritos } = useFavoritos();
+  const { favoritos } = useContext(FavoritosContext);
 
   return (
     <div className="mt-4">

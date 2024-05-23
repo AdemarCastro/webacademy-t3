@@ -1,3 +1,5 @@
+"use client";
+
 import { Produto } from '@/app/types/produto';
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
@@ -23,4 +25,4 @@ const FavoritosProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
 const useFavoritos = () => useContext(FavoritosContext);
 
-export { FavoritosProvider, useFavoritos };
+export { FavoritosProvider, useFavoritos, FavoritosContext };

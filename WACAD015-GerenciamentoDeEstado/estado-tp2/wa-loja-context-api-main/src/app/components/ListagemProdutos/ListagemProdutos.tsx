@@ -2,15 +2,12 @@ import React from 'react';
 import CardProduto from "../CardProduto/CardProduto";
 import ResumoFavoritos from "../ResumoFavoritos/ResumoFavoritos";
 import { Produto } from '@/app/types/produto';
-import { useFavoritos } from '../FavoritosProvider/FavoritosProvider';
 
 interface IListagemProdutos {
   produtos: Produto[];
 }
 
 export default function ListagemProdutos({ produtos }: IListagemProdutos) {
-  const { favoritos, setFavoritos } = useFavoritos();
-
   return (
     <>
       <h5 className="mb-3">Produtos disponíveis:</h5>
